@@ -202,16 +202,18 @@ const ShaderMaterial = ({
       return;
     }
     lastFrameTime = timestamp;
-
-    const material: any = ref.current.material;
+    // eslint-disable-next-line
+    const material = ref.current!.material as THREE.ShaderMaterial;
     const timeLocation = material.uniforms.u_time;
     timeLocation.value = timestamp;
   });
 
   const getUniforms = () => {
+    // eslint-disable-next-line
     const preparedUniforms: any = {};
 
     for (const uniformName in uniforms) {
+      // eslint-disable-next-line
       const uniform: any = uniforms[uniformName];
 
       switch (uniform.type) {

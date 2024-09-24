@@ -1,4 +1,3 @@
-import Image from "next/image";   
 import { HeroParallaxOfferings } from "./HParallax"
 
 export default function Offerings() {
