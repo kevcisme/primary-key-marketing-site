@@ -8,7 +8,7 @@ export function HeroParallaxOfferings() {
 export const products = [
   {
     title: "Sileninja",
-    link: "https://gomoonbeam.com",
+    link: "https://sileninja.com",
     thumbnail:
       "/images/sileninja.jpg",
   },
