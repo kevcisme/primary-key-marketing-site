@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&amp;display=swap');
+    </style>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="200" rx="12" fill="#1C1814"/>
+
+  <!-- Database table icon -->
+  <g transform="translate(38, 18)">
+    <!-- Primary key column highlight -->
+    <rect x="12" y="12" width="38" height="126" rx="6" fill="#C4A882" opacity="0.08"/>
+
+    <!-- Table container -->
+    <rect x="12" y="12" width="128" height="126" rx="8" fill="none" stroke="#C4A882" stroke-width="3.5"/>
+
+    <!-- Header row divider -->
+    <line x1="12" y1="42" x2="140" y2="42" stroke="#C4A882" stroke-width="2.5"/>
+
+    <!-- Column dividers -->
+    <line x1="50" y1="12" x2="50" y2="138" stroke="#C4A882" stroke-width="1.5" opacity="0.25"/>
+    <line x1="95" y1="12" x2="95" y2="138" stroke="#C4A882" stroke-width="1.5" opacity="0.25"/>
+
+    <!-- Row dividers -->
+    <line x1="12" y1="74" x2="140" y2="74" stroke="#C4A882" stroke-width="1.2" opacity="0.2"/>
+    <line x1="12" y1="106" x2="140" y2="106" stroke="#C4A882" stroke-width="1.2" opacity="0.2"/>
+
+    <!-- Key icon in PK column header -->
+    <circle cx="31" cy="27" r="7" fill="none" stroke="#C4A882" stroke-width="2.2"/>
+    <circle cx="31" cy="27" r="2.5" fill="#C4A882"/>
+
+    <!-- Header labels -->
+    <line x1="62" y1="27" x2="82" y2="27" stroke="#C4A882" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+    <line x1="107" y1="27" x2="130" y2="27" stroke="#C4A882" stroke-width="2.5" stroke-linecap="round" opacity="0.45"/>
+
+    <!-- PK column values -->
+    <circle cx="31" cy="58" r="3.5" fill="#C4A882"/>
+    <circle cx="31" cy="90" r="3.5" fill="#C4A882"/>
+    <circle cx="31" cy="122" r="3.5" fill="#C4A882"/>
+
+    <!-- Data rows — col 2 -->
+    <line x1="61" y1="58" x2="83" y2="58" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <line x1="61" y1="90" x2="79" y2="90" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <line x1="61" y1="122" x2="85" y2="122" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+
+    <!-- Data rows — col 3 -->
+    <line x1="106" y1="58" x2="128" y2="58" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <line x1="106" y1="90" x2="132" y2="90" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+    <line x1="106" y1="122" x2="124" y2="122" stroke="#C4A882" stroke-width="2" stroke-linecap="round" opacity="0.22"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="215" y="107" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-weight="700" font-size="58" fill="#F5EDE0" letter-spacing="-1">primary</text>
+  <text x="518" y="107" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-weight="400" font-size="58" fill="#C4A882" letter-spacing="-1">key</text>
+
+  <!-- Tagline -->
+  <text x="218" y="138" font-family="'DM Sans', 'Helvetica Neue', sans-serif" font-weight="400" font-size="14" fill="#7A6E60" letter-spacing="4">CRAFTSMANSHIP MEETS CODE</text>
+</svg>

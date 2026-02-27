@@ -80,11 +80,11 @@ export default function Home() {
       {/* Section A — Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-screen px-8 bg-dots">
         <Image
-          className="dark:invert mb-8"
-          src="/images/logo.png"
+          className="mb-8"
+          src="/images/final-logo-light.svg"
           alt="Primary Key logo"
-          width={300}
-          height={150}
+          width={400}
+          height={100}
           priority
         />
 

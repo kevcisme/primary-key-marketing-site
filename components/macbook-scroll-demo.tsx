@@ -15,7 +15,7 @@ export default function MacbookScrollDemo() {
         badge={
           <a href="/">
             <Image
-              src="/images/logo.png"
+              src="/images/final-logo-light.svg"
               alt="Primary Key"
               width={40}
               height={40}

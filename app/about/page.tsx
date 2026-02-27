@@ -101,7 +101,7 @@ export default function About() {
               resolution={80}
               charset="dots"
               color="#171717"
-              backgroundColor="#f0e8d1"
+              backgroundColor="#eeebe1"
               animationStyle="typewriter"
               animateOnView={false}
               className="w-full h-[300px] sm:h-[400px] md:h-[500px]"
