@@ -31,3 +31,48 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Monospace accent utility */
+.font-mono-accent {
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Consolas, "Liberation Mono", monospace;
+  letter-spacing: -0.02em;
+}
+
+/* Dot-grid background pattern (punch card / graph paper) */
+.bg-dots {
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.12) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    );
+  }
+}
+
+/* Subtle scanline overlay for retro sections */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+}

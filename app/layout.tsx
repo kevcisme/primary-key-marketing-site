@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { FloatingNav } from "@/components/ui/floating-navbar";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,6 +19,14 @@ export const metadata: Metadata = {
   description: "Making Stuff and Taking names",
 };
 
+const navItems = [
+  { name: "Home", link: "/" },
+  { name: "About", link: "/about" },
+  { name: "Lab", link: "/lab" },
+  { name: "Offerings", link: "/offerings" },
+  { name: "Hire", link: "/hire" },
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,6 +37,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <FloatingNav navItems={navItems} />
         {children}
       </body>
     </html>
