@@ -230,6 +230,13 @@ export default function Home() {
         <p className="font-mono-accent text-neutral-400 text-sm mt-4 text-center">
           &gt; where you stand. what&apos;s worth doing. in what order.
         </p>
+        <p className="font-mono-accent text-neutral-400 text-sm mt-3 text-center">
+          &gt; already have a roadmap? see{" "}
+          <Link href="/build" className="text-amber-glow hover:underline">
+            what comes after the assessment
+          </Link>
+          .
+        </p>
         <div className="mt-10">
           <Link href="/hire">
             <Button

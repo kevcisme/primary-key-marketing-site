@@ -47,7 +47,7 @@ export const FloatingNav = ({
         animate={{ y: visible ? 0 : -100, opacity: visible ? 1 : 0 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "flex max-w-fit fixed top-6 inset-x-0 mx-auto border border-amber-glow/20 rounded-full bg-punch-card/80 dark:bg-black/80 shadow-lg shadow-amber-glow/5 z-[5000] px-8 py-4 items-center justify-center space-x-4 backdrop-blur-md",
+          "flex flex-wrap max-w-[92vw] sm:max-w-fit fixed top-6 inset-x-0 mx-auto border border-amber-glow/20 rounded-3xl sm:rounded-full bg-punch-card/80 dark:bg-black/80 shadow-lg shadow-amber-glow/5 z-[5000] px-5 sm:px-8 py-3 sm:py-4 items-center justify-center gap-x-4 gap-y-2 backdrop-blur-md",
           className
         )}
       >
@@ -56,18 +56,17 @@ export const FloatingNav = ({
             key={`link-${idx}`}
             href={navItem.link}
             className={cn(
-              "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-amber-glow hover:text-amber-glow transition-colors text-sm"
+              "relative dark:text-neutral-50 items-center flex text-neutral-600 dark:hover:text-amber-glow hover:text-amber-glow transition-colors"
             )}
           >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="hidden sm:block font-mono-accent">
+            <span className="font-mono-accent text-xs sm:text-sm">
               {navItem.name}
             </span>
           </Link>
         ))}
         <Link
           href="/hire"
-          className="border text-sm font-mono-accent relative border-amber-glow/30 dark:border-amber-glow/50 text-black dark:text-white px-4 py-2 rounded-full bg-amber-glow/10 hover:bg-amber-glow/20 transition-colors"
+          className="border text-xs sm:text-sm font-mono-accent relative border-amber-glow/30 dark:border-amber-glow/50 text-black dark:text-white px-4 py-2 rounded-full bg-amber-glow/10 hover:bg-amber-glow/20 transition-colors"
         >
           <span>Book a Call</span>
         </Link>

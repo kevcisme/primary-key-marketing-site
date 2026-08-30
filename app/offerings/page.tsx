@@ -211,7 +211,13 @@ export default function Offerings() {
               If the firm wants help executing the roadmap — architecture, data
               work, tool selection, rollout, pilots — that is a second
               engagement, scoped from the roadmap and priced after it. Not
-              before.
+              before.{" "}
+              <Link
+                href="/build"
+                className="text-amber-glow hover:underline font-mono-accent text-sm"
+              >
+                What comes after &rarr;
+              </Link>
             </p>
           </div>
           <div>
