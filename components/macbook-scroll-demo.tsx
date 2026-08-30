@@ -9,7 +9,7 @@ export default function MacbookScrollDemo() {
       <MacbookScroll
         title={
           <span>
-            See our products <br /> in action.
+            Shipped, deployed, <br /> and still running.
           </span>
         }
         badge={

@@ -69,7 +69,7 @@ export const FloatingNav = ({
           href="/hire"
           className="border text-sm font-mono-accent relative border-amber-glow/30 dark:border-amber-glow/50 text-black dark:text-white px-4 py-2 rounded-full bg-amber-glow/10 hover:bg-amber-glow/20 transition-colors"
         >
-          <span>Get in Touch</span>
+          <span>Book a Call</span>
         </Link>
       </motion.div>
     </AnimatePresence>

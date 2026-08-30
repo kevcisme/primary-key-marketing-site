@@ -61,12 +61,12 @@ function ServiceCard({
 }
 
 const ctaWords = [
-  { text: "Ready" },
-  { text: "to" },
-  { text: "start" },
-  { text: "your" },
-  { text: "next" },
-  { text: "project?" },
+  { text: "Four" },
+  { text: "weeks." },
+  { text: "Fixed" },
+  { text: "fee." },
+  { text: "One" },
+  { text: "answer." },
 ];
 
 export default function Hire() {
@@ -84,7 +84,7 @@ export default function Hire() {
           }}
           className="mt-8 bg-gradient-to-br from-neutral-100 to-amber-glow py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
         >
-          Let&apos;s Build Something
+          Let&apos;s Find Out Where <br /> You Stand
         </motion.h1>
       </LampContainer>
 
@@ -94,12 +94,12 @@ export default function Hire() {
       {/* Section B — Services */}
       <section className="px-8 py-20 sm:px-20">
         <p className="font-mono-accent text-amber-glow text-sm mb-12 text-center">
-          &gt; hover to explore
+          &gt; what we do
         </p>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 max-w-6xl mx-auto">
           <ServiceCard
-            title="Full-Stack Development"
-            description="End-to-end web and server applications built with modern frameworks. React, Next.js, Node, Python — whatever the problem demands."
+            title="The AI Assessment"
+            description="Four weeks, $2,500, fixed scope. We score six axes, rank every opportunity, and hand the partners a sequenced roadmap. Start here — everything else is scoped from it."
             colors={[
               [212, 160, 74],
               [245, 240, 225],
@@ -107,8 +107,8 @@ export default function Hire() {
             animationSpeed={5}
           />
           <ServiceCard
-            title="Mobile Applications"
-            description="Native and cross-platform mobile apps with React Native and Swift. Smooth, performant, and beautiful on every device."
+            title="Vendor Pressure-Test"
+            description="A tool is already on the table and the partners can't judge the claim. We check it against your own numbers and put the answer in writing — buy it, or don't, and why."
             colors={[
               [74, 222, 128],
               [212, 160, 74],
@@ -116,8 +116,8 @@ export default function Hire() {
             animationSpeed={3}
           />
           <ServiceCard
-            title="AI & Machine Learning"
-            description="Intelligent systems, custom models, and data pipelines. From recommendation engines to computer vision — we build AI that works."
+            title="Running the Roadmap"
+            description="Architecture, data work, tool selection, rollout, pilots. The second engagement, for firms that want help executing. Scoped from the roadmap — never before it."
             colors={[
               [236, 72, 153],
               [212, 160, 74],
@@ -140,8 +140,9 @@ export default function Hire() {
             </Button>
           </a>
         </div>
-        <p className="font-mono-accent text-neutral-400 text-sm mt-8">
-          &gt; info@primarykey.solutions
+        <p className="font-mono-accent text-neutral-400 text-sm mt-8 text-center max-w-xl">
+          &gt; tell us the size of the firm and what a vendor last pitched you.
+          that&apos;s enough to start.
         </p>
       </section>
     </div>

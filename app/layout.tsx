@@ -15,16 +15,16 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Primary Key",
-  description: "Making Stuff and Taking names",
+  title: "Primary Key — The foundation beneath the AI",
+  description:
+    "We tell professional-services firms where they stand with AI, what's worth doing, and in what order — before they spend a dollar on tools.",
 };
 
 const navItems = [
   { name: "Home", link: "/" },
+  { name: "Assessment", link: "/offerings" },
+  { name: "Method", link: "/lab" },
   { name: "About", link: "/about" },
-  { name: "Lab", link: "/lab" },
-  { name: "Offerings", link: "/offerings" },
-  { name: "Hire", link: "/hire" },
 ];
 
 export default function RootLayout({
