@@ -1,7 +1,7 @@
 "use client";
 import { LampContainer } from "@/components/ui/lamp";
 import { Timeline } from "@/components/ui/timeline";
-import { AsciiArt } from "@/components/ui/ascii-art";
+import ImageGenerationLoaderDemo from "@/components/image-generation-loader-demo";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { Button } from "@/components/ui/moving-border";
 import { motion } from "framer-motion";
@@ -91,7 +91,7 @@ const timelineData = [
 
 export default function About() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Section A — Lamp Hero */}
       <LampContainer>
         <motion.h1
@@ -102,30 +102,19 @@ export default function About() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="mt-8 bg-gradient-to-br from-neutral-100 to-amber-glow py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-8 bg-linear-to-br from-neutral-100 to-amber-glow py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
         >
           The foundation <br /> beneath the AI
         </motion.h1>
       </LampContainer>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* Section B — Positioning */}
       <section className="flex flex-col items-center px-8 py-20 sm:px-20">
         <div className="max-w-4xl w-full flex flex-col items-center gap-12">
-          <div className="w-full max-w-4xl rounded-lg shadow-2xl shadow-black/10 border border-black/10 overflow-hidden">
-            <AsciiArt
-              src="/images/belllabs.jpg"
-              resolution={80}
-              charset="dots"
-              color="#171717"
-              backgroundColor="#eeebe1"
-              animationStyle="typewriter"
-              animateOnView={false}
-              className="w-full h-[300px] sm:h-[400px] md:h-[500px]"
-            />
-          </div>
+          <ImageGenerationLoaderDemo />
           <div className="max-w-3xl">
             <p className="text-2xl leading-snug tracking-wide font-bold">
               <EncryptedText

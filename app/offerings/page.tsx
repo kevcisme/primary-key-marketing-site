@@ -16,7 +16,7 @@ const weeks = [
     description:
       "We sit with the partners and set the aim. What AI should do here. What stays human. Where the lines are. Nothing gets scored until we agree on what we are scoring for.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconTargetArrow className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -26,7 +26,7 @@ const weeks = [
     description:
       "Thirty minutes with each person who runs the work. Then we look at the systems ourselves — the practice-management tool, the document store, the licenses you already pay for.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconSearch className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -36,7 +36,7 @@ const weeks = [
     description:
       "Six axes, each scored 0 to 4. Every opportunity we found, ranked by what it's worth against what it costs.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconRulerMeasure className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -46,7 +46,7 @@ const weeks = [
     description:
       "The roadmap. Now, next, later. A build-or-buy call on each item. Owners named. Delivered before busy season, not during it.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconPresentation className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -117,7 +117,7 @@ const questions = [
 
 export default function Offerings() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[70vh] bg-neutral-950 overflow-hidden px-8">
         <Spotlight
@@ -125,7 +125,7 @@ export default function Offerings() {
           fill="#d4a04a"
         />
         <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400 text-center">
             The AI Assessment
           </h1>
           <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center">
@@ -139,7 +139,7 @@ export default function Offerings() {
       </section>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* The four weeks */}
       <section className="px-8 pt-8 pb-20 sm:px-20">
@@ -186,7 +186,7 @@ export default function Offerings() {
                     {d.name}
                   </span>
                 </div>
-                <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                <p className="text-sm sm:text-base/6 text-neutral-700 dark:text-neutral-300 leading-relaxed">
                   {d.body}
                 </p>
               </div>

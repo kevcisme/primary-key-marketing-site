@@ -68,7 +68,7 @@ export const TypewriterEffect = ({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
         className={cn(
-          "inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-amber-glow",
+          "inline-block rounded-xs w-[4px] h-4 md:h-6 lg:h-10 bg-amber-glow",
           cursorClassName
         )}
       />
@@ -131,7 +131,7 @@ export const TypewriterEffectSmooth = ({
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
         className={cn(
-          "block rounded-sm w-[4px] h-4 sm:h-6 xl:h-12 bg-amber-glow",
+          "block rounded-xs w-[4px] h-4 sm:h-6 xl:h-12 bg-amber-glow",
           cursorClassName
         )}
       />

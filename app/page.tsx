@@ -36,7 +36,7 @@ const deliverables = [
     description:
       "Six axes, one phase, one page. Where the firm stands today, scored on what we observe — not what we're told.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconChartRadar className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -46,7 +46,7 @@ const deliverables = [
     description:
       "What staff say they use, and what they actually use. The gap is the risk.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconEyeExclamation className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -56,7 +56,7 @@ const deliverables = [
     description:
       "Every candidate for automation, ranked by what it's worth against what it costs.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconListSearch className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -66,7 +66,7 @@ const deliverables = [
     description:
       "On each opportunity. Sometimes the answer is a tool you already own with a feature switched off.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconScale className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -76,7 +76,7 @@ const deliverables = [
     description:
       "For tax firms, aligned to IRS Publication 4557 and the FTC Safeguards Rule — the written security plan you are required to have anyway.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconShieldLock className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -86,7 +86,7 @@ const deliverables = [
     description:
       "Now, next, later. Owners named, order defended. The thing the partners actually run.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconRoute className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -95,7 +95,7 @@ const deliverables = [
 
 export default function Home() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Section A — Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-screen px-8 bg-dots">
         <Image
@@ -144,16 +144,16 @@ export default function Home() {
           <p className="font-mono-accent text-amber-glow text-sm mb-8">
             &gt; the problem
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
+          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
             Every week a vendor calls. The tool will save a day. Some tools will.
             Most won&apos;t — and the reason is never the tool.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             The firm&apos;s data is spread across five systems and a shared
             drive. Nobody owns the rules. Half the staff already use AI on their
             own, and no one knows which client data went into it.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed">
             A firm can buy tools all year and end up where it started. That is
             the failure we are hired to prevent.
           </p>
@@ -224,7 +224,7 @@ export default function Home() {
 
       {/* Section E — Footer / Sign-off */}
       <section className="flex flex-col items-center justify-center py-20 px-8">
-        <div className="h-[20rem] w-full max-w-5xl flex items-center justify-center">
+        <div className="h-80 w-full max-w-5xl flex items-center justify-center">
           <TextHoverEffect text="PRIMARY KEY" />
         </div>
         <p className="font-mono-accent text-neutral-400 text-sm mt-4 text-center">

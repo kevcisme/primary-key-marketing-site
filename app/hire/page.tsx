@@ -24,7 +24,7 @@ function ServiceCard({
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="border border-amber-glow/10 group/canvas-card flex items-center justify-center dark:border-white/[0.1] max-w-sm w-full mx-auto p-4 relative h-[30rem] bg-punch-card/30 dark:bg-black rounded-xl"
+      className="border border-amber-glow/10 group/canvas-card flex items-center justify-center dark:border-white/10 max-w-sm w-full mx-auto p-4 relative h-120 bg-punch-card/30 dark:bg-black rounded-xl"
     >
       <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
       <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
@@ -71,7 +71,7 @@ const ctaWords = [
 
 export default function Hire() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Section A — Lamp Hero */}
       <LampContainer>
         <motion.h1
@@ -82,14 +82,14 @@ export default function Hire() {
             duration: 0.8,
             ease: "easeInOut",
           }}
-          className="mt-8 bg-gradient-to-br from-neutral-100 to-amber-glow py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+          className="mt-8 bg-linear-to-br from-neutral-100 to-amber-glow py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
         >
           Let&apos;s Find Out Where <br /> You Stand
         </motion.h1>
       </LampContainer>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* Section B — Services */}
       <section className="px-8 py-20 sm:px-20">

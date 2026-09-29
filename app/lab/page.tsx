@@ -20,7 +20,7 @@ const axes = [
     description:
       "Is the firm's data digital, structured, centralized, queryable? This is the substrate. Everything AI does, it does to data — and most firms have theirs in five systems and a shared drive. A foundation axis: nothing above it can score higher.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconDatabase className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -30,7 +30,7 @@ const axes = [
     description:
       "Policy, confidentiality, PII handling, professional liability, oversight. The second foundation axis — and in a professional-services firm, usually the one that caps the score.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconShieldLock className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -40,7 +40,7 @@ const axes = [
     description:
       "None, generic, embedded, or custom. Scored twice — what leadership says is in use, and what is actually in use.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconPlugConnected className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -50,7 +50,7 @@ const axes = [
     description:
       "Whether AI is one person's private habit or a documented step in how the work gets done.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconRouteSquare className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -60,7 +60,7 @@ const axes = [
     description:
       "Literacy, champions, training, comfort. Who can actually run the thing after we leave.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconUsers className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -70,7 +70,7 @@ const axes = [
     description:
       "Whether a partner owns this, has a budget for it, and can say what AI is for at this firm. Without an owner, nothing on the roadmap survives busy season.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconBuildingBank className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -158,7 +158,7 @@ const phases = [
 
 export default function Lab() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Section A — Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[70vh] bg-neutral-950 overflow-hidden px-8">
         <Spotlight
@@ -166,7 +166,7 @@ export default function Lab() {
           fill="#d4a04a"
         />
         <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400">
             The Method
           </h1>
           <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center">
@@ -176,7 +176,7 @@ export default function Lab() {
       </section>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* Section B — The six axes */}
       <section className="px-8 py-20 sm:px-20 bg-dots">
@@ -187,7 +187,7 @@ export default function Lab() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             A firm is not a number. It is a shape.
           </h2>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl">
             We score six axes, each from 0 to 4, against behavioral anchors —
             what we can watch someone do, not what sounds right in a meeting. Two
             firms with the same average can need opposite things. The shape is
@@ -214,15 +214,15 @@ export default function Lab() {
           <p className="font-mono-accent text-amber-glow text-sm mb-8">
             &gt; the one rule
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
+          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
             A firm&apos;s phase can never be higher than its weakest foundation.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             Data and governance are the foundation. If either one scores a 1, the
             firm is Experimenting — no matter how many tools it has bought, how
             enthusiastic the staff are, or what the average says.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             This is the point of the instrument. An average will happily hide a
             zero. Ours refuses to. It stops firms from stacking tools on a floor
             that cannot hold them, and it names the one constraint that is
@@ -248,7 +248,7 @@ export default function Lab() {
 
       {/* Section E — Footer */}
       <section className="flex flex-col items-center justify-center py-20 px-8">
-        <div className="h-[20rem] w-full max-w-5xl flex items-center justify-center">
+        <div className="h-80 w-full max-w-5xl flex items-center justify-center">
           <TextHoverEffect text="MEASURE" />
         </div>
         <p className="font-mono-accent text-neutral-400 text-sm mt-4 text-center">

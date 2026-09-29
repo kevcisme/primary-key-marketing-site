@@ -51,7 +51,7 @@ const allProjects = [
 
 export default function Work() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[60vh] bg-neutral-950 overflow-hidden px-8">
         <Spotlight
@@ -59,7 +59,7 @@ export default function Work() {
           fill="#d4a04a"
         />
         <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400">
             The Work
           </h1>
           <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center max-w-2xl">
@@ -69,7 +69,7 @@ export default function Work() {
       </section>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* Framing */}
       <section className="px-8 pt-8 pb-16 sm:px-20">
@@ -77,16 +77,16 @@ export default function Work() {
           <p className="font-mono-accent text-amber-glow text-sm mb-8">
             &gt; why this page exists
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
+          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
             We give a build-or-buy call on every opportunity. We can only do that
             honestly because we have done both.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             Data platforms, practice tools, mobile apps, integrations between
             systems that were never meant to talk. Shipped, deployed, and
             maintained — not demoed.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed">
             It is also why we can cost a vendor&apos;s claim. When someone says a
             feature ships next quarter, we know what that sentence usually means.
           </p>
@@ -94,13 +94,13 @@ export default function Work() {
       </section>
 
       {/* Gradient transition: beige to dark */}
-      <div className="h-24 bg-gradient-to-b from-transparent to-[#0B0B0F]" />
+      <div className="h-24 bg-linear-to-b from-transparent to-[#0B0B0F]" />
 
       {/* MacBook scroll */}
       <MacbookScrollDemo />
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-[#0B0B0F] to-transparent" />
+      <div className="h-24 bg-linear-to-b from-[#0B0B0F] to-transparent" />
 
       {/* Hero Parallax */}
       <section className="flex flex-col items-center px-8 pb-20 sm:px-20">
@@ -126,7 +126,7 @@ export default function Work() {
               href={project.link}
               className="group relative rounded-xl border border-amber-glow/10 bg-punch-card/50 dark:bg-neutral-900/50 overflow-hidden hover:border-amber-glow/30 transition-all duration-300 hover:shadow-lg hover:shadow-amber-glow/5"
             >
-              <div className="aspect-[3/2] relative overflow-hidden">
+              <div className="aspect-3/2 relative overflow-hidden">
                 <Image
                   src={project.img}
                   alt={project.name}

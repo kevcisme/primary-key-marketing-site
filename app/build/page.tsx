@@ -45,7 +45,7 @@ const buildWork = [
     description:
       "Five systems and a shared drive, pulled into one place that can be queried. This is the unglamorous work that makes every later item cheaper — and it is the one most firms want to skip.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconDatabaseImport className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -55,7 +55,7 @@ const buildWork = [
     description:
       "Two systems that don't talk, reconciled by hand in a spreadsheet every month. We make them talk.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconArrowsExchange className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -65,7 +65,7 @@ const buildWork = [
     description:
       "The hour-long check a machine can do in a minute — built with a human review point, because the liability is still yours.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconRobot className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -75,7 +75,7 @@ const buildWork = [
     description:
       "Configuring what the roadmap said to buy, and getting the firm actually using it. Most failed AI tools were bought, not deployed.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconPackageImport className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -85,7 +85,7 @@ const buildWork = [
     description:
       "The policy from the assessment turned into settings, permissions, and approved tools — rules people can actually follow.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconLock className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-1",
@@ -95,7 +95,7 @@ const buildWork = [
     description:
       "When nothing off the shelf fits how you work. This is the smallest bucket on purpose — and we will tell you plainly when you are in it and when you aren't.",
     header: (
-      <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
+      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
     ),
     icon: <IconCode className="h-4 w-4 text-amber-glow" />,
     className: "md:col-span-2",
@@ -150,7 +150,7 @@ const questions = [
 
 export default function BuildAndRun() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
+    <div className="font-(family-name:--font-geist-sans)">
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[70vh] bg-neutral-950 overflow-hidden px-8">
         <Spotlight
@@ -158,7 +158,7 @@ export default function BuildAndRun() {
           fill="#d4a04a"
         />
         <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400 text-center">
             After the Assessment
           </h1>
           <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center">
@@ -172,7 +172,7 @@ export default function BuildAndRun() {
       </section>
 
       {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
 
       {/* Framing */}
       <section className="px-8 pt-8 pb-20 sm:px-20">
@@ -180,17 +180,17 @@ export default function BuildAndRun() {
           <p className="font-mono-accent text-amber-glow text-sm mb-8">
             &gt; scoped from the roadmap, not before it
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
+          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
             The most expensive thing a small firm can buy is the right system in
             the wrong order.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             So we don&apos;t quote a build before the assessment. Not out of
             process for its own sake — we simply don&apos;t know yet whether the
             thing you want built is the binding constraint, or whether it sits on
             top of a foundation that can&apos;t hold it.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed">
             Once the roadmap exists, the scope is short and the number is real.
             Every item on it already has an owner, an order, and a build-or-buy
             call attached — so pricing the work is arithmetic, not a negotiation.
@@ -260,7 +260,7 @@ export default function BuildAndRun() {
           <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
             Most of it isn&apos;t AI. That is the point.
           </h2>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed max-w-3xl">
             The model is the last thing that goes in and the least of the work.
             What takes the time is the substrate underneath it — the data, the
             plumbing, the rules, and getting people to use the thing.
@@ -327,7 +327,7 @@ export default function BuildAndRun() {
             {RETAINER_PRICE} a month. Eight hours. No surprises in either
             direction.
           </h2>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-12 max-w-3xl">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-12 max-w-3xl">
             The cap is deliberate. If a month needs more than eight hours, it
             isn&apos;t a retainer month — it is a project, and we will say so
             rather than quietly rolling it in and billing you for it later.
@@ -346,7 +346,7 @@ export default function BuildAndRun() {
                     {item.name}
                   </span>
                 </div>
-                <p className="text-sm sm:text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
+                <p className="text-sm sm:text-base/6 text-neutral-700 dark:text-neutral-300 leading-relaxed">
                   {item.body}
                 </p>
               </div>
@@ -361,21 +361,21 @@ export default function BuildAndRun() {
           <p className="font-mono-accent text-amber-glow text-sm mb-8">
             &gt; what doesn&apos;t change when we build
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
+          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
             We still don&apos;t sell software.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             The obvious risk in a firm that both assesses and builds is that
             every assessment starts finding build work. Ours is priced so it
             doesn&apos;t have to. The roadmap is the deliverable whether or not
             you ever hire us again, and it names buy far more often than it names
             build — because for a firm of this size, buying is usually right.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
             We take no referral fees and carry no product line, so a
             recommendation to buy costs us nothing to make.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
+          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed">
             And we build to hand over. Documentation, a named owner inside the
             firm, no lock-in worth the name. You should be able to fire us and
             keep the system running.
