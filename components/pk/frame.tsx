@@ -8,6 +8,8 @@ type FrameProps = {
   draw?: boolean;
   /** Knock the frame off register by [x, y] px, like the deck's offset outlines. */
   offset?: [number, number];
+  /** Leave a centered gap in the bottom edge, wide enough for a lockup to sit in it. */
+  notch?: string;
   className?: string;
   children?: React.ReactNode;
 };
@@ -22,6 +24,7 @@ export function Frame({
   weight = 2,
   draw = false,
   offset,
+  notch,
   className,
   children,
 }: FrameProps) {
@@ -38,7 +41,20 @@ export function Frame({
       >
         <span className={cn(x, "inset-x-0 top-0 origin-left")} />
         <span className={cn(y, "inset-y-0 right-0 origin-top")} style={{ animationDelay: "120ms" }} />
-        <span className={cn(x, "inset-x-0 bottom-0 origin-right")} style={{ animationDelay: "240ms" }} />
+        {notch ? (
+          <>
+            <span
+              className={cn(x, "bottom-0 left-0 origin-right", notch)}
+              style={{ animationDelay: "240ms" }}
+            />
+            <span
+              className={cn(x, "right-0 bottom-0 origin-left", notch)}
+              style={{ animationDelay: "240ms" }}
+            />
+          </>
+        ) : (
+          <span className={cn(x, "inset-x-0 bottom-0 origin-right")} style={{ animationDelay: "240ms" }} />
+        )}
         <span className={cn(y, "inset-y-0 left-0 origin-bottom")} style={{ animationDelay: "360ms" }} />
       </span>
       {children}
