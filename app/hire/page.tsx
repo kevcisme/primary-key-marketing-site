@@ -2,7 +2,7 @@
 import { LampContainer } from "@/components/ui/lamp";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { Button } from "@/components/ui/moving-border";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect";
 import React, { useState } from "react";
 import { Icon } from "./canvas";

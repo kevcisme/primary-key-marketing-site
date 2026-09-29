@@ -4,7 +4,7 @@ import { Timeline } from "@/components/ui/timeline";
 import ImageGenerationLoaderDemo from "@/components/image-generation-loader-demo";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { Button } from "@/components/ui/moving-border";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Link from "next/link";
 
 const aboutText =
