@@ -138,7 +138,8 @@ export default function Home() {
           <p className="mb-6 text-base leading-relaxed text-muted sm:text-lg/8">
             The firm&apos;s data is spread across five systems and a shared drive. Nobody owns the
             rules. Half the staff already use AI on their own, and no one knows which client data
-            went into it. Employees use AI for tasks it's not great at and miss the opportunities to outsource the tasks AI is great at.
+            went into it. Employees use AI for tasks it&apos;s not great at and miss the
+            opportunities to outsource the tasks AI is great at.
           </p>
           <p className="text-base leading-relaxed text-muted sm:text-lg/8">
             A firm can buy tools all year and end up where it started. That is the failure we are
