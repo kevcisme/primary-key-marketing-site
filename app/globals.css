@@ -38,6 +38,27 @@
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo,
     monospace;
 
+  /* Deck motifs: the cover diagonal sweeping in, and outline frames drawing edge by edge. */
+  --animate-diagonal-in: diagonal-in 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-draw-x: draw-x 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-draw-y: draw-y 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes diagonal-in {
+    from {
+      clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+    }
+  }
+  @keyframes draw-x {
+    from {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes draw-y {
+    from {
+      transform: scaleY(0);
+    }
+  }
+
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 
   @keyframes spotlight {
