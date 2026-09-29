@@ -100,14 +100,18 @@ export default function Home() {
       <DiagonalField className="flex min-h-svh items-center px-5 pb-20 pt-36 sm:px-12">
         <div className="relative mx-auto w-full max-w-5xl">
           <h1 className="sr-only">Your AI problem is a data problem.</h1>
-          <Frame tone="field" draw className="mx-auto max-w-[54rem] px-5 pb-16 pt-8 sm:px-10 sm:pt-12 md:px-12">
+          <Frame
+            tone="field"
+            draw
+            className="mx-auto max-w-[54rem] px-5 pb-16 pt-8 sm:px-10 sm:pt-12 md:px-12"
+          >
             <HeroBoard />
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-ground px-5 py-2.5">
-              <Logo className="w-56 sm:w-72" />
+            <div className="absolute top-full left-1/2 -mt-5 w-[min(34rem,92vw)] -translate-x-1/2 sm:-mt-6 sm:w-[34rem]">
+              <Logo className="w-full" />
             </div>
           </Frame>
-          <div className="mt-16 flex flex-col items-center gap-8 text-center">
-            <p className="font-mono text-sm sm:text-base">&gt; data first. rules second. tools last.</p>
+          <div className="mt-36 flex flex-col items-center gap-8 text-center sm:mt-40">
+            <p className="font-mono text-sm sm:text-base">&gt; helping firms help themselves with AI. data first. rules second. tools last.</p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <PkButton href="/offerings" size="lg">
                 The Assessment
@@ -128,13 +132,13 @@ export default function Home() {
             Every week a vendor calls. The tool will save a day. Some tools will. Most won&apos;t —
             and{" "}
             <PointerHighlight containerClassName="max-w-full px-1">
-              <span>the reason is never the tool.</span>
+              <span>the reason is rarely the tool.</span>
             </PointerHighlight>
           </p>
           <p className="mb-6 text-base leading-relaxed text-muted sm:text-lg/8">
             The firm&apos;s data is spread across five systems and a shared drive. Nobody owns the
             rules. Half the staff already use AI on their own, and no one knows which client data
-            went into it.
+            went into it. Employees use AI for tasks it's not great at and miss the opportunities to outsource the tasks AI is great at.
           </p>
           <p className="text-base leading-relaxed text-muted sm:text-lg/8">
             A firm can buy tools all year and end up where it started. That is the failure we are
