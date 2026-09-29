@@ -10,6 +10,13 @@
  * just <section data-theme="dark">).
  */
 
+/* Registered so the diagonal's gradient stop can animate. */
+@property --pk-split {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 50%;
+}
+
 /* Hover-only content (the parallax project titles) must still reveal on tap. */
 @custom-variant hover (&:hover);
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
@@ -45,7 +52,7 @@
 
   @keyframes diagonal-in {
     from {
-      clip-path: polygon(100% 100%, 100% 100%, 100% 100%);
+      --pk-split: 100%;
     }
   }
   @keyframes draw-x {

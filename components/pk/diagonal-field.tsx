@@ -2,34 +2,38 @@ import { cn } from "@/lib/utils";
 
 type DiagonalFieldProps = {
   /**
-   * `cover`: field-a ground with field-b sweeping in corner to corner (the deck cover).
-   * `wedge`: page ground with a field-b wedge rising to the top-right (the deck's content slides).
+   * `cover`: field-a and field-b split corner to corner (the deck cover).
+   * `wedge`: page ground with a field-b wedge in the bottom-right (the deck's content slides).
    */
   variant?: "cover" | "wedge";
   className?: string;
   children?: React.ReactNode;
 };
 
-const CLIP = {
-  cover: "polygon(100% 0, 100% 100%, 0 100%)",
-  wedge: "polygon(100% 22%, 100% 100%, 28% 100%)",
-} as const;
+/** Where the split sits along the top-left → bottom-right axis; 50% is exactly corner to corner. */
+const SPLIT = { cover: "50%", wedge: "62%" } as const;
+const FIRST = { cover: "var(--pk-field-a)", wedge: "var(--pk-ground)" } as const;
 
-/** Two flat color fields split on a diagonal. Light: marigold / sky. Navy theme: navy / cobalt. */
+/**
+ * Two flat color fields split on a diagonal. Light: marigold / sky. Navy
+ * theme: navy / cobalt. Drawn as a hard-stop gradient (not a clipped layer) so
+ * contrast checkers see the real background behind text.
+ */
 export function DiagonalField({ variant = "cover", className, children }: DiagonalFieldProps) {
   return (
     <div
       className={cn(
-        "relative isolate overflow-hidden",
-        variant === "cover" ? "bg-field-a text-field-ink" : "bg-ground text-ink",
+        "animate-diagonal-in",
+        variant === "cover" ? "text-field-ink" : "text-ink",
         className
       )}
+      style={
+        {
+          "--pk-split": SPLIT[variant],
+          backgroundImage: `linear-gradient(to bottom right, ${FIRST[variant]} calc(var(--pk-split) - 0.6px), var(--pk-field-b) calc(var(--pk-split) + 0.6px))`,
+        } as React.CSSProperties
+      }
     >
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 animate-diagonal-in bg-field-b"
-        style={{ clipPath: CLIP[variant] }}
-      />
       {children}
     </div>
   );

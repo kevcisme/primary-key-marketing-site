@@ -20,7 +20,7 @@ export function PageHero({ eyebrow, title, prompt, lead, aside, className }: Pag
     <DiagonalField variant="wedge" className={cn("px-6 pb-24 pt-40 sm:px-20", className)}>
       <div
         className={cn(
-          "mx-auto grid max-w-6xl items-end gap-14",
+          "relative mx-auto grid max-w-6xl items-end gap-14",
           aside && "lg:grid-cols-[minmax(0,1fr)_minmax(0,24rem)]"
         )}
       >
@@ -30,7 +30,8 @@ export function PageHero({ eyebrow, title, prompt, lead, aside, className }: Pag
             {title}
           </h1>
           {prompt && <p className="mt-8 font-mono text-sm sm:text-base">&gt; {prompt}</p>}
-          {lead && <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted">{lead}</p>}
+          {/* Ink, not muted: on small screens the lead runs over the wedge, and fog on cobalt fails. */}
+          {lead && <p className="mt-6 max-w-2xl text-lg leading-relaxed">{lead}</p>}
         </div>
         {aside}
       </div>

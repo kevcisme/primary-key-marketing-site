@@ -61,7 +61,13 @@ export const StickyScroll = ({
             id={item.id}
             className="flex scroll-mt-24 flex-col justify-center py-10 lg:min-h-[60vh] lg:py-16"
           >
-            <div className={cn("transition-opacity duration-300", active !== index && "lg:opacity-35")}>
+            {/* The current step is marked by its rule, not by fading the others: faded text fails contrast. */}
+            <div
+              className={cn(
+                "border-l-4 pl-6 transition-[border-color] duration-300",
+                active === index ? "border-marigold" : "border-line"
+              )}
+            >
               {item.eyebrow && <p className="font-mono text-sm text-accent-text">{item.eyebrow}</p>}
               <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight md:text-3xl">{item.title}</h3>
               <div className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg/8">

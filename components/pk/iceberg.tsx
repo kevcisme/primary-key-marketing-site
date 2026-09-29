@@ -102,8 +102,8 @@ export function Iceberg() {
           <li
             key={layer.axes}
             className={cn(
-              "border-l-4 py-8 pl-6 transition-[border-color,opacity] duration-500 lg:min-h-[38vh]",
-              active === i ? "border-marigold" : "border-line lg:opacity-50"
+              "border-l-4 py-8 pl-6 transition-[border-color] duration-500 lg:min-h-[38vh]",
+              active === i ? "border-marigold" : "border-line"
             )}
           >
             <p className="font-mono text-sm text-accent-text">

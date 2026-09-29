@@ -98,7 +98,7 @@ export default function Home() {
     <main>
       {/* Hero — the deck cover: diagonal field, drawn frame, the name on the frame's edge */}
       <DiagonalField className="flex min-h-svh items-center px-5 pb-20 pt-36 sm:px-12">
-        <div className="mx-auto w-full max-w-5xl">
+        <div className="relative mx-auto w-full max-w-5xl">
           <h1 className="sr-only">Your AI problem is a data problem.</h1>
           <Frame tone="field" draw className="mx-auto max-w-[54rem] px-5 pb-16 pt-8 sm:px-10 sm:pt-12 md:px-12">
             <HeroBoard />
@@ -195,10 +195,10 @@ export default function Home() {
           <div>
             <Eyebrow className="mb-6">who it&apos;s for</Eyebrow>
             <p className="mb-4 font-serif text-2xl font-bold leading-snug tracking-tight">
-              Firms of 5 to 50 people that sell judgment for a living.
+              Firms of 5 to 150 people that sell judgment for a living.
             </p>
             <p className="text-base leading-relaxed text-muted">
-              Accounting and tax practices first. Partners who are being sold AI and have no way to
+              Law, accounting and tax practices first. Partners who are being sold AI and have no way to
               judge it.
             </p>
           </div>
