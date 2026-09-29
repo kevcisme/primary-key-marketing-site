@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import { Logo } from "@/components/pk/logo";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import { FlipWords } from "@/components/ui/flip-words";
 import { Button } from "@/components/ui/moving-border";
@@ -95,17 +95,10 @@ const deliverables = [
 
 export default function Home() {
   return (
-    <div className="font-(family-name:--font-geist-sans)">
+    <div>
       {/* Section A — Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-screen px-8 bg-dots">
-        <Image
-          className="mb-8"
-          src="/images/final-logo-light.svg"
-          alt="Primary Key logo"
-          width={400}
-          height={100}
-          priority
-        />
+        <Logo className="mb-8 w-[400px] max-w-full" />
 
         <div className="flex flex-col items-center justify-center">
           <div className="flex flex-wrap justify-center items-center text-base sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">

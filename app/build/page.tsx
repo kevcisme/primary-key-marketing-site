@@ -150,7 +150,7 @@ const questions = [
 
 export default function BuildAndRun() {
   return (
-    <div className="font-(family-name:--font-geist-sans)">
+    <div>
       {/* Hero */}
       <section className="relative flex flex-col items-center justify-center min-h-[70vh] bg-neutral-950 overflow-hidden px-8">
         <Spotlight

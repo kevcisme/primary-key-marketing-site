@@ -8,6 +8,7 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/pk/theme-toggle";
 
 export const FloatingNav = ({
   navItems,
@@ -70,6 +71,7 @@ export const FloatingNav = ({
         >
           <span>Book a Call</span>
         </Link>
+        <ThemeToggle />
       </motion.div>
     </AnimatePresence>
   );

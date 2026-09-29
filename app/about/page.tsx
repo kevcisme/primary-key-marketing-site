@@ -91,7 +91,7 @@ const timelineData = [
 
 export default function About() {
   return (
-    <div className="font-(family-name:--font-geist-sans)">
+    <div>
       {/* Section A — Lamp Hero */}
       <LampContainer>
         <motion.h1
