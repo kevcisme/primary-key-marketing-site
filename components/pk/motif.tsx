@@ -1,17 +1,46 @@
 import { cn } from "@/lib/utils";
+import { AXES, readVector, type Vector } from "@/lib/maturity";
 
 /** Cobalt disappears on navy-lift, so it lifts to cornflower in the navy theme. */
 const COBALT = "fill-cobalt dark:fill-cornflower";
 const INK = "stroke-frame";
+
+/*
+ * Hover animations run when an ancestor `group/card` (OffsetCard) is hovered,
+ * and only for users without a reduced-motion preference. SVG pivots use
+ * canvas coordinates (`transform-view`) or the shape's own box (`transform-fill`).
+ */
+const HOVER_EASE = "duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]";
 
 const polar = (cx: number, cy: number, r: number, deg: number) => {
   const a = (deg * Math.PI) / 180;
   return [cx + r * Math.cos(a), cy + r * Math.sin(a)] as const;
 };
 
+/** Radar on the canvas: data at the top, then clockwise in vector order; level 4 is r = 38. */
+const radarVertex = (v: Vector, i: number) => polar(120, 48, (v[i] / 4) * 38, -90 + i * 60);
+const radarPoints = (v: Vector) =>
+  AXES.map((_, i) => radarVertex(v, i).map((n) => n.toFixed(2)).join(",")).join(" ");
+const bindingVertex = (v: Vector) => radarVertex(v, AXES.indexOf(readVector(v).binding));
+
+/** Scored today (binding: governance), then after the foundation work (binding: leadership). */
+const RADAR_BEFORE: Vector = [3, 2, 3, 2, 1, 3];
+const RADAR_AFTER: Vector = [3, 3, 3, 3, 3, 2];
+const [bindX, bindY] = bindingVertex(RADAR_BEFORE);
+const [nextX, nextY] = bindingVertex(RADAR_AFTER);
+const RADAR_SHAPE =
+  "fill-teal stroke-cobalt dark:stroke-sky transform-view origin-[120px_48px] transition-[opacity,scale] duration-700 ease-out";
+
+/** Opportunity-map columns start at x = 60 and step 20; each column swells 40 ms after the last. */
+const waveDelay = (x: number) => `${((x - 60) / 20) * 40}ms`;
+
 /** Flat geometric compositions on a 240×96 canvas, drawn only in palette tokens. */
 const MOTIFS = {
-  /** A six-axis maturity shape; the marigold vertex is the binding constraint. */
+  /**
+   * A six-axis maturity shape; the marigold vertex is the binding constraint.
+   * On hover the firm re-scores: the shape grows into RADAR_AFTER and the dot
+   * slides to that vector's binding axis.
+   */
   radar: (
     <>
       <path d="M0 96V58a38 38 0 0 1 38 38Z" className="fill-sky" />
@@ -23,68 +52,153 @@ const MOTIFS = {
         <line x1="87.1" y1="29" x2="152.9" y2="67" />
         <line x1="87.1" y1="67" x2="152.9" y2="29" />
       </g>
-      <polygon points="120,19.5 136.45,38.5 144.7,62.25 120,67 111.8,52.75 95.3,33.75" className="fill-teal stroke-cobalt dark:stroke-sky" fillOpacity={0.65} strokeWidth={2} strokeLinejoin="round" />
-      <circle cx="111.8" cy="52.75" r="4.5" className={cn("fill-marigold", INK)} strokeWidth={1.5} />
+      <polygon
+        points={radarPoints(RADAR_BEFORE)}
+        className={cn(RADAR_SHAPE, "motion-safe:group-hover/card:scale-110 motion-safe:group-hover/card:opacity-0")}
+        fillOpacity={0.65}
+        strokeWidth={2}
+        strokeLinejoin="round"
+      />
+      <polygon
+        points={radarPoints(RADAR_AFTER)}
+        className={cn(RADAR_SHAPE, "scale-80 opacity-0 motion-safe:group-hover/card:scale-100 motion-safe:group-hover/card:opacity-100")}
+        fillOpacity={0.65}
+        strokeWidth={2}
+        strokeLinejoin="round"
+      />
+      <circle
+        cx={bindX}
+        cy={bindY}
+        r="4.5"
+        className={cn(
+          "fill-marigold transition-[translate]",
+          INK,
+          HOVER_EASE,
+          "motion-safe:group-hover/card:translate-x-(--dx) motion-safe:group-hover/card:translate-y-(--dy)"
+        )}
+        style={{ "--dx": `${nextX - bindX}px`, "--dy": `${nextY - bindY}px` } as React.CSSProperties}
+        strokeWidth={1.5}
+      />
     </>
   ),
-  /** Stated vs. observed: the overlap that doesn't match is the risk. */
+  /**
+   * Stated vs. observed: the overlap that doesn't match is the risk. On hover
+   * the observed ring slides onto the stated circle and the flagged lens closes.
+   */
   gap: (
     <>
       <circle cx="104" cy="48" r="30" className="fill-sky" />
-      <path d="M120 22.62A30 30 0 0 1 120 73.38A30 30 0 0 1 120 22.62Z" className="fill-flag" />
-      <circle cx="136" cy="48" r="30" className={cn("fill-none", INK)} strokeWidth={2.5} />
+      <path
+        d="M120 22.62A30 30 0 0 1 120 73.38A30 30 0 0 1 120 22.62Z"
+        className="fill-flag transform-fill origin-center transition-[translate,scale,opacity] duration-700 ease-out motion-safe:group-hover/card:-translate-x-[16px] motion-safe:group-hover/card:scale-x-0 motion-safe:group-hover/card:opacity-0"
+      />
+      <circle
+        cx="136"
+        cy="48"
+        r="30"
+        className={cn("fill-none transition-[translate]", INK, HOVER_EASE, "motion-safe:group-hover/card:-translate-x-[32px]")}
+        strokeWidth={2.5}
+      />
       <rect x="196" y="66" width="14" height="14" className="fill-marigold" />
     </>
   ),
-  /** Every opportunity plotted; the prioritized few in marigold. */
+  /** Every opportunity plotted; the prioritized few in marigold. On hover the dots swell in a left-to-right wave. */
   map: (
     <>
       <g className="fill-frame" fillOpacity={0.28}>
         {[26, 48, 70].flatMap((y) =>
-          [60, 80, 100, 120, 140, 160, 180].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="3" />)
+          [60, 80, 100, 120, 140, 160, 180].map((x) => (
+            <circle
+              key={`${x}-${y}`}
+              cx={x}
+              cy={y}
+              r="3"
+              className="transform-fill origin-center transition-[scale] duration-300 ease-out motion-safe:group-hover/card:scale-180"
+              style={{ transitionDelay: waveDelay(x) }}
+            />
+          ))
         )}
       </g>
       <g className={INK} strokeOpacity={0.35} strokeDasharray="3 4" strokeWidth={1.5}>
         <line x1="120" y1="10" x2="120" y2="86" />
         <line x1="44" y1="48" x2="196" y2="48" />
       </g>
-      <circle cx="140" cy="26" r="7.5" className="fill-marigold" />
-      <circle cx="160" cy="26" r="5.5" className="fill-marigold" />
-      <circle cx="180" cy="48" r="6" className="fill-marigold" />
-      <circle cx="80" cy="70" r="5" className="fill-teal" />
+      {[
+        { cx: 140, cy: 26, r: 7.5, fill: "fill-marigold" },
+        { cx: 160, cy: 26, r: 5.5, fill: "fill-marigold" },
+        { cx: 180, cy: 48, r: 6, fill: "fill-marigold" },
+        { cx: 80, cy: 70, r: 5, fill: "fill-teal" },
+      ].map((dot) => (
+        <circle
+          key={`${dot.cx}-${dot.cy}`}
+          cx={dot.cx}
+          cy={dot.cy}
+          r={dot.r}
+          className={cn(
+            dot.fill,
+            "transform-fill origin-center transition-[scale]",
+            HOVER_EASE,
+            "motion-safe:group-hover/card:scale-135"
+          )}
+          style={{ transitionDelay: waveDelay(dot.cx) }}
+        />
+      ))}
     </>
   ),
-  /** Build or buy, weighed. */
+  /** Build or buy, weighed. On hover the beam teeters on the fulcrum apex and settles. */
   scale: (
     <>
       <polygon points="120,53 107,80 133,80" className={COBALT} />
       <rect x="94" y="80" width="52" height="4" className="fill-frame" fillOpacity={0.55} />
-      <line x1="62" y1="44" x2="178" y2="62" className={INK} strokeWidth={3} strokeLinecap="round" />
-      <circle cx="62" cy="30" r="12" className="fill-sky" />
-      <circle cx="178" cy="44" r="16" className="fill-marigold" />
+      <g className="transform-view origin-[120px_53px] motion-safe:group-hover/card:animate-teeter">
+        <line x1="62" y1="44" x2="178" y2="62" className={INK} strokeWidth={3} strokeLinecap="round" />
+        <circle cx="62" cy="30" r="12" className="fill-sky" />
+        <circle cx="178" cy="44" r="16" className="fill-marigold" />
+      </g>
     </>
   ),
-  /** Governance: a shield with a keyhole. */
+  /** Governance: a shield with a keyhole. On hover the key turns a quarter turn. */
   shield: (
     <>
       <circle cx="86" cy="24" r="14" className="fill-sky" />
       <path d="M120 10L152 21V45C152 66 138 79 120 87C102 79 88 66 88 45V21Z" className={COBALT} />
-      <circle cx="120" cy="42" r="8" className="fill-marigold" />
-      <path d="M116 46h8l3 19h-14Z" className="fill-marigold" />
+      <g
+        className={cn(
+          "transform-view origin-[120px_49.5px] transition-[rotate]",
+          HOVER_EASE,
+          "motion-safe:group-hover/card:rotate-90"
+        )}
+      >
+        <circle cx="120" cy="42" r="8" className="fill-marigold" />
+        <path d="M116 46h8l3 19h-14Z" className="fill-marigold" />
+      </g>
       <rect x="170" y="62" width="12" height="12" className="fill-teal" />
     </>
   ),
-  /** Now, next, later. */
+  /** Now, next, later. On hover the bars bob from the baseline, staggered, and land back in place. */
   steps: (
     <>
-      <rect x="66" y="58" width="34" height="28" className="fill-marigold" />
-      <rect x="103" y="42" width="34" height="44" className="fill-sky" />
-      <rect x="140" y="26" width="34" height="60" className="fill-teal" />
-      <g className={cn("fill-none", INK)} strokeWidth={2}>
-        <rect x="62" y="54" width="34" height="28" />
-        <rect x="99" y="38" width="34" height="44" />
-        <rect x="136" y="22" width="34" height="60" />
-      </g>
+      {[
+        { x: 66, y: 58, h: 28, fill: "fill-marigold" },
+        { x: 103, y: 42, h: 44, fill: "fill-sky" },
+        { x: 140, y: 26, h: 60, fill: "fill-teal" },
+      ].map((bar, i) => (
+        <g
+          key={bar.x}
+          className="transform-view origin-[0px_86px] motion-safe:group-hover/card:animate-bar-fluctuate"
+          style={{ animationDelay: `${i * 180}ms` }}
+        >
+          <rect x={bar.x} y={bar.y} width="34" height={bar.h} className={bar.fill} />
+          <rect
+            x={bar.x - 4}
+            y={bar.y - 4}
+            width="34"
+            height={bar.h}
+            className={cn("fill-none", INK)}
+            strokeWidth={2}
+          />
+        </g>
+      ))}
       <line x1="54" y1="86.5" x2="186" y2="86.5" className={INK} strokeWidth={2} />
     </>
   ),
