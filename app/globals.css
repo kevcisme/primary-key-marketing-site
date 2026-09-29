@@ -1,14 +1,42 @@
 @import "tailwindcss";
 
+/*
+ * Primary Key design tokens.
+ *
+ * The raw palette is sampled from the AI Assessment deck. Components use the
+ * semantic tokens (bg-ground, text-ink, border-frame, ...) which resolve to
+ * --pk-* variables. [data-theme] flips those variables: next-themes sets it on
+ * <html>, and any subtree can set it too (a navy "night" band in light mode is
+ * just <section data-theme="dark">).
+ */
+
 /* Hover-only content (hire cards, work titles) must still reveal on tap. */
 @custom-variant hover (&:hover);
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-amber-glow: #d4a04a;
-  --color-punch-card: #f5f0e1;
-  --color-terminal: #4ade80;
+  --color-marigold: #ffc93d;
+  --color-marigold-deep: #ffc002;
+  --color-sky: #a3d5f2;
+  --color-sky-pale: #d7effa;
+  --color-teal: #42a8c5;
+  --color-teal-deep: #0393b3;
+  --color-cobalt: #0869a0;
+  --color-cornflower: #599cd3;
+  --color-navy: #101f38;
+  --color-navy-lift: #2b3a4f;
+  --color-slate: #44546a;
+  --color-fog: #9ca4ad;
+  --color-cream: #f2eadc;
+  --color-mist: #f5fafc;
+  --color-flag: #e26a42;
+  --color-carbon: #0e131a;
+
+  /* next/font puts these variables on <html>, so they resolve at :root. */
+  --font-sans: var(--font-jost), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-pt-serif), ui-serif, Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo,
+    monospace;
 
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 
@@ -24,81 +52,126 @@
   }
 }
 
-/* Preflight leaves buttons on the default cursor; the site's CTAs are buttons. */
+/* Inline so utilities read --pk-* directly and follow scoped [data-theme]. */
+@theme inline {
+  --color-ground: var(--pk-ground);
+  --color-ground-alt: var(--pk-ground-alt);
+  --color-surface: var(--pk-surface);
+  --color-ink: var(--pk-ink);
+  --color-muted: var(--pk-muted);
+  --color-line: var(--pk-line);
+  --color-frame: var(--pk-frame);
+  --color-accent: var(--pk-accent);
+  --color-accent-ink: var(--pk-accent-ink);
+  --color-accent-text: var(--pk-accent-text);
+  --color-signal: var(--pk-signal);
+  --color-field-a: var(--pk-field-a);
+  --color-field-b: var(--pk-field-b);
+  --color-field-frame: var(--pk-field-frame);
+  --color-field-ink: var(--pk-field-ink);
+
+  --shadow-hard: 5px 5px 0 0 var(--pk-frame);
+  --shadow-hard-sm: 3px 3px 0 0 var(--pk-frame);
+
+  /* Temporary aliases so legacy classes pick up the new palette until each page is migrated. */
+  --color-amber-glow: var(--pk-accent-text);
+  --color-punch-card: var(--pk-surface);
+  --color-terminal: var(--pk-signal);
+  --color-background: var(--pk-ground);
+  --color-foreground: var(--pk-ink);
+}
+
+/*
+ * Pairings are chosen for contrast, not copied from the deck: text on
+ * marigold, sky, or teal is always ink. Teal and marigold are never text on a
+ * light ground; accent-text is cobalt there (5.9:1 on white).
+ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  --pk-ground: #ffffff;
+  --pk-ground-alt: #f5fafc;
+  --pk-surface: #f2eadc;
+  --pk-ink: #0e131a;
+  --pk-muted: #44546a;
+  --pk-line: rgb(14 19 26 / 0.12);
+  --pk-frame: #0e131a;
+  --pk-accent: #ffc93d;
+  --pk-accent-ink: #0e131a;
+  --pk-accent-text: #0869a0;
+  --pk-signal: #42a8c5;
+  --pk-field-a: #ffc93d;
+  --pk-field-b: #a3d5f2;
+  --pk-field-frame: #ffffff;
+  --pk-field-ink: #0e131a;
+  --pk-dot: rgb(8 105 160 / 0.16);
+}
+
+/* Must follow the light block: <html> matches :root too, at equal specificity. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --pk-ground: #101f38;
+  --pk-ground-alt: #0b172b;
+  --pk-surface: #2b3a4f;
+  --pk-ink: #f2eadc;
+  --pk-muted: #9ca4ad;
+  --pk-line: rgb(163 213 242 / 0.16);
+  --pk-frame: #f2eadc;
+  --pk-accent: #ffc93d;
+  --pk-accent-ink: #0e131a;
+  --pk-accent-text: #ffc93d;
+  --pk-signal: #42a8c5;
+  --pk-field-a: #101f38;
+  --pk-field-b: #0869a0;
+  --pk-field-frame: #ffc93d;
+  --pk-field-ink: #f2eadc;
+  --pk-dot: rgb(163 213 242 / 0.14);
+}
+
 @layer base {
+  body {
+    background-color: var(--color-ground);
+    color: var(--color-ink);
+  }
+
+  /* Preflight leaves buttons on the default cursor; the site's CTAs are buttons. */
   button:not(:disabled),
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  ::selection {
+    background-color: var(--color-marigold);
+    color: var(--color-carbon);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-text);
+    outline-offset: 3px;
+  }
 }
 
-@layer utilities {
-  :root {
-    --background-light: linear-gradient(to top, #f0e8d1, #ededed);
-    --foreground: #171717;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background-dark: linear-gradient(to right, #0a0a0a, #1c1c1c);
-      --foreground: #ededed;
-    }
-  }
-
-  body {
-    color: var(--foreground);
-    background: var(--background-light);
-    font-family: Arial, Helvetica, sans-serif;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    body {
-      background: var(--background-dark);
-    }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 /* Monospace accent utility */
 .font-mono-accent {
-  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, "SF Mono",
-    Menlo, Consolas, "Liberation Mono", monospace;
-  letter-spacing: -0.02em;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
 }
 
-/* Dot-grid background pattern (punch card / graph paper) */
+/* Dot-grid background pattern */
 .bg-dots {
-  background-image: radial-gradient(
-    circle,
-    rgba(0, 0, 0, 0.12) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(circle, var(--pk-dot) 1px, transparent 1px);
   background-size: 24px 24px;
-}
-
-@media (prefers-color-scheme: dark) {
-  .bg-dots {
-    background-image: radial-gradient(
-      circle,
-      rgba(255, 255, 255, 0.1) 1px,
-      transparent 1px
-    );
-  }
-}
-
-/* Subtle scanline overlay for retro sections */
-.scanlines {
-  position: relative;
-}
-.scanlines::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
-  );
 }
