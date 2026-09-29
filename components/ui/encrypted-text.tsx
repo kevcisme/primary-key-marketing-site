@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type EncryptedTextProps = {
@@ -118,6 +118,7 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
 
   if (!text) return null;
 
+  // Both branches must render the same element so useInView keeps observing the live node.
   if (!mounted) {
     return (
       <span ref={ref} className={cn(className)} aria-label={text} role="text">
@@ -127,7 +128,7 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
   }
 
   return (
-    <motion.span
+    <span
       ref={ref}
       className={cn(className)}
       aria-label={text}
@@ -151,6 +152,6 @@ export const EncryptedText: React.FC<EncryptedTextProps> = ({
           </span>
         );
       })}
-    </motion.span>
+    </span>
   );
 };

@@ -1,10 +1,12 @@
-"use client";
-import MacbookScrollDemo from "@/components/macbook-scroll-demo";
-import { HeroParallaxOfferings } from "./HParallax";
-import { Spotlight } from "@/components/ui/spotlight";
-import { Button } from "@/components/ui/moving-border";
 import Image from "next/image";
 import Link from "next/link";
+import MacbookScrollDemo from "@/components/macbook-scroll-demo";
+import { PageHero } from "@/components/pk/page-hero";
+import { Eyebrow } from "@/components/pk/eyebrow";
+import { Night } from "@/components/pk/night";
+import { PkButton } from "@/components/pk/pk-button";
+import { CtaBand } from "@/components/pk/cta-band";
+import { HeroParallaxOfferings } from "./HParallax";
 
 const allProjects = [
   // Flagship products
@@ -49,121 +51,110 @@ const allProjects = [
   { name: "EdTech Platform", desc: "Audio analysis and meeting transcription for education", category: "Product", link: "#", img: "/images/projects/edtech.svg" },
 ];
 
+/**
+ * One duotone for 36 thumbnails in 36 styles: grayscale, then mapped from navy
+ * (shadows) to sky (highlights). Cleared on hover.
+ */
+function DuotoneFilter() {
+  return (
+    <svg aria-hidden className="absolute size-0">
+      <filter id="pk-duotone" colorInterpolationFilters="sRGB">
+        <feColorMatrix type="saturate" values="0" />
+        <feComponentTransfer>
+          <feFuncR type="table" tableValues="0.063 0.639" />
+          <feFuncG type="table" tableValues="0.122 0.835" />
+          <feFuncB type="table" tableValues="0.22 0.949" />
+        </feComponentTransfer>
+      </filter>
+    </svg>
+  );
+}
+
 export default function Work() {
   return (
-    <div className="font-[family-name:var(--font-geist-sans)]">
-      {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center min-h-[60vh] bg-neutral-950 overflow-hidden px-8">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="#d4a04a"
-        />
-        <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
-            The Work
-          </h1>
-          <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center max-w-2xl">
-            &gt; the engineering practice behind the advice.
-          </p>
-        </div>
-      </section>
+    <main>
+      <DuotoneFilter />
 
-      {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-neutral-950 to-transparent" />
+      <PageHero
+        eyebrow="the work"
+        title="The Work"
+        prompt="the engineering practice behind the advice."
+      />
 
       {/* Framing */}
-      <section className="px-8 pt-8 pb-16 sm:px-20">
-        <div className="max-w-3xl mx-auto">
-          <p className="font-mono-accent text-amber-glow text-sm mb-8">
-            &gt; why this page exists
+      <section className="px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-3xl">
+          <Eyebrow className="mb-8">why this page exists</Eyebrow>
+          <p className="mb-8 font-serif text-2xl font-bold leading-snug tracking-tight sm:text-3xl/snug">
+            We give a build-or-buy call on every opportunity. We can only do that honestly because
+            we have done both.
           </p>
-          <p className="text-2xl sm:text-3xl font-bold leading-snug tracking-tight mb-8">
-            We give a build-or-buy call on every opportunity. We can only do that
-            honestly because we have done both.
+          <p className="mb-6 text-base leading-relaxed text-muted sm:text-lg/8">
+            Data platforms, practice tools, mobile apps, integrations between systems that were
+            never meant to talk. Shipped, deployed, and maintained — not demoed.
           </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-            Data platforms, practice tools, mobile apps, integrations between
-            systems that were never meant to talk. Shipped, deployed, and
-            maintained — not demoed.
-          </p>
-          <p className="text-base sm:text-lg text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            It is also why we can cost a vendor&apos;s claim. When someone says a
-            feature ships next quarter, we know what that sentence usually means.
+          <p className="text-base leading-relaxed text-muted sm:text-lg/8">
+            It is also why we can cost a vendor&apos;s claim. When someone says a feature ships
+            next quarter, we know what that sentence usually means.
           </p>
         </div>
       </section>
 
-      {/* Gradient transition: beige to dark */}
-      <div className="h-24 bg-gradient-to-b from-transparent to-[#0B0B0F]" />
+      <Night>
+        <MacbookScrollDemo />
+      </Night>
 
-      {/* MacBook scroll */}
-      <MacbookScrollDemo />
-
-      {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-gradient-to-b from-[#0B0B0F] to-transparent" />
-
-      {/* Hero Parallax */}
-      <section className="flex flex-col items-center px-8 pb-20 sm:px-20">
+      <section className="flex flex-col items-center px-6 pb-20 sm:px-20">
         <HeroParallaxOfferings />
       </section>
 
       {/* Full catalog */}
-      <section className="px-8 py-20 sm:px-20">
-        <p className="font-mono-accent text-amber-glow text-sm mb-4 max-w-7xl mx-auto">
-          &gt; the full catalog
-        </p>
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 max-w-7xl mx-auto tracking-tight">
-          Built and Shipped
-        </h2>
-        <p className="text-base text-neutral-600 dark:text-neutral-400 mb-12 max-w-7xl mx-auto">
-          Client products, internal tools, and things built to find out whether
-          they could be.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {allProjects.map((project, i) => (
-            <Link
-              key={i}
-              href={project.link}
-              className="group relative rounded-xl border border-amber-glow/10 bg-punch-card/50 dark:bg-neutral-900/50 overflow-hidden hover:border-amber-glow/30 transition-all duration-300 hover:shadow-lg hover:shadow-amber-glow/5"
-            >
-              <div className="aspect-[3/2] relative overflow-hidden">
-                <Image
-                  src={project.img}
-                  alt={project.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="p-4">
-                <span className="font-mono-accent text-[10px] text-amber-glow uppercase tracking-wider">
-                  {project.category}
-                </span>
-                <h3 className="font-bold text-sm mt-1 group-hover:text-amber-glow transition-colors">
-                  {project.name}
-                </h3>
-                <p className="text-xs text-neutral-500 dark:text-neutral-400 mt-1 line-clamp-2">
-                  {project.desc}
-                </p>
-              </div>
-            </Link>
-          ))}
+      <section className="px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow className="mb-4">the full catalog</Eyebrow>
+          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight md:text-5xl">
+            Built and Shipped
+          </h2>
+          <p className="mb-12 text-base text-muted">
+            Client products, internal tools, and things built to find out whether they could be.
+          </p>
+          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {allProjects.map((project) => (
+              <Link
+                key={project.name}
+                href={project.link}
+                className="group relative block border-2 border-frame bg-surface shadow-hard-sm transition-[translate,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-hard"
+              >
+                <div className="relative aspect-3/2 overflow-hidden border-b-2 border-frame">
+                  <Image
+                    src={project.img}
+                    alt={project.name}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover transition-[scale] duration-300 [filter:url(#pk-duotone)] group-hover:scale-105 group-hover:[filter:none]"
+                  />
+                </div>
+                <div className="p-4">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-accent-text">
+                    {project.category}
+                  </span>
+                  <h3 className="mt-1 text-sm font-semibold">{project.name}</h3>
+                  <p className="mt-1 line-clamp-2 text-xs text-muted">{project.desc}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="flex flex-col items-center justify-center py-16 px-8">
-        <p className="font-mono-accent text-neutral-400 text-sm mb-8">
-          &gt; {allProjects.length} shipped and counting
-        </p>
-        <Link href="/offerings">
-          <Button
-            borderRadius="1.75rem"
-            className="px-8 py-3 font-mono-accent text-sm"
-          >
+      <CtaBand
+        title={`${allProjects.length} shipped and counting.`}
+        actions={
+          <PkButton href="/offerings" size="lg">
             Start With the Assessment
-          </Button>
-        </Link>
-      </section>
-    </div>
+          </PkButton>
+        }
+      />
+    </main>
   );
 }

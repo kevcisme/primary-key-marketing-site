@@ -6,18 +6,21 @@ import {
   useTransform,
   useSpring,
   MotionValue,
-} from "framer-motion";
+} from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export const HeroParallax = ({
   products,
+  header,
 }: {
   products: {
     title: string;
     link: string;
     thumbnail: string;
   }[];
+  /** Optional heading above the rows. */
+  header?: React.ReactNode;
 }) => {
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
@@ -57,9 +60,9 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto perspective-[1000px] transform-3d"
     >
-      <Header />
+      {header}
       <motion.div
         style={{
           rotateX,
@@ -101,21 +104,6 @@ export const HeroParallax = ({
   );
 };
 
-export const Header = () => {
-  return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-        The Ultimate <br /> development studio
-      </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-        We build beautiful products with the latest technologies and frameworks.
-        We are a team of passionate developers and designers that love to build
-        amazing products.
-      </p>
-    </div>
-  );
-};
-
 export const ProductCard = ({
   product,
   translate,
@@ -136,7 +124,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-96 w-120 relative shrink-0"
     >
       <Link
         href={product.link}
@@ -146,12 +134,12 @@ export const ProductCard = ({
           src={product.thumbnail}
           height="600"
           width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0"
+          className="object-cover object-top-left absolute h-full w-full inset-0"
           alt={product.title}
         />
       </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-navy pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 font-mono text-sm opacity-0 group-hover/product:opacity-100 text-cream">
         {product.title}
       </h2>
     </motion.div>

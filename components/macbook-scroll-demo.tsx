@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { MacbookScroll } from "@/components/ui/macbook-scroll";
-import Image from "next/image";
+import { Logo } from "@/components/pk/logo";
 
 export default function MacbookScrollDemo() {
   return (
-    <div className="w-full overflow-hidden bg-[#0B0B0F]">
+    <div className="w-full overflow-hidden">
       <MacbookScroll
         title={
           <span>
@@ -13,13 +13,10 @@ export default function MacbookScrollDemo() {
           </span>
         }
         badge={
-          <a href="/">
-            <Image
-              src="/images/final-logo-light.svg"
-              alt="Primary Key"
-              width={40}
-              height={40}
-              className="h-10 w-10 -rotate-12 transform rounded-full invert"
+          <a href="/" aria-label="Primary Key home">
+            <Logo
+              variant="mark"
+              className="h-10 w-10 -rotate-12 transform rounded-full text-cream"
             />
           </a>
         }
