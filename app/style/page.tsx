@@ -371,13 +371,14 @@ export default function StylePage() {
       <section className="px-8 pt-24 sm:px-20">
         <SectionHead id="motifs" eyebrow="motifs" title="Header art, drawn from the palette">
           Flat geometric compositions for card headers and sticky panels. Each one is about the card
-          it sits on.
+          it sits on. Radar, gap, map, scale, shield, and steps animate when their card is hovered —
+          hover a thumbnail to preview.
         </SectionHead>
         <div className="mx-auto max-w-6xl">
           <ThemePair>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
               {MOTIF_NAMES.map((name) => (
-                <figure key={name}>
+                <figure key={name} className="group/card">
                   <Motif name={name} className="h-24" />
                   <figcaption className="mt-1.5 font-mono text-[11px] text-muted">{name}</figcaption>
                 </figure>

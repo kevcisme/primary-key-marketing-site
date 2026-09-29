@@ -65,6 +65,47 @@
       transform: scaleY(0);
     }
   }
+
+  /* Bento drawings on card hover: finite sequences that settle back at rest. */
+  --animate-teeter: teeter 2.2s cubic-bezier(0.45, 0, 0.55, 1) both;
+  --animate-bar-fluctuate: bar-fluctuate 2.4s ease-in-out both;
+
+  @keyframes teeter {
+    0%,
+    100% {
+      rotate: 0deg;
+    }
+    18% {
+      rotate: -16deg;
+    }
+    38% {
+      rotate: 11deg;
+    }
+    58% {
+      rotate: -6deg;
+    }
+    78% {
+      rotate: 3deg;
+    }
+  }
+  @keyframes bar-fluctuate {
+    0%,
+    100% {
+      scale: 1 1;
+    }
+    20% {
+      scale: 1 0.55;
+    }
+    45% {
+      scale: 1 1.25;
+    }
+    70% {
+      scale: 1 0.85;
+    }
+    85% {
+      scale: 1 1.05;
+    }
+  }
 }
 
 /* Inline so utilities read --pk-* directly and follow scoped [data-theme]. */
