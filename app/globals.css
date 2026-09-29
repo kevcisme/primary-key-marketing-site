@@ -94,6 +94,9 @@
   --shadow-hard: 5px 5px 0 0 var(--pk-frame);
   --shadow-hard-sm: 3px 3px 0 0 var(--pk-frame);
 
+  /* Inline so each ripple cell reads its own --duration / --delay. */
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
+
   /* Temporary aliases so legacy classes pick up the new palette until each page is migrated. */
   --color-amber-glow: var(--pk-accent-text);
   --color-punch-card: var(--pk-surface);
@@ -147,6 +150,19 @@
   --pk-field-frame: #ffc93d;
   --pk-field-ink: #f2eadc;
   --pk-dot: rgb(163 213 242 / 0.14);
+}
+
+@keyframes cell-ripple {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+    background-color: var(--cell-ripple-color);
+  }
+  100% {
+    opacity: 0.4;
+  }
 }
 
 @layer base {

@@ -15,6 +15,7 @@ import { Motif, MOTIF_NAMES } from "@/components/pk/motif";
 import { Night } from "@/components/pk/night";
 import { SpineNav } from "@/components/pk/spine-nav";
 import { StepPillsDemo } from "./step-pills-demo";
+import { MotionDemo } from "./motion-demo";
 
 export const metadata: Metadata = {
   title: "Style tile — Primary Key",
@@ -39,6 +40,7 @@ const SECTIONS = [
   { id: "type", label: "type" },
   { id: "primitives", label: "primitives" },
   { id: "motifs", label: "motifs" },
+  { id: "motion", label: "motion" },
 ];
 
 const PALETTE = [
@@ -381,6 +383,18 @@ export default function StylePage() {
                 </figure>
               ))}
             </div>
+          </ThemePair>
+        </div>
+      </section>
+
+      <section className="px-8 pt-24 sm:px-20">
+        <SectionHead id="motion" eyebrow="motion" title="The tech layer, recolored">
+          Aceternity components pulled through the registry and moved onto the palette. One
+          signature moment per page; everything else stays flat.
+        </SectionHead>
+        <div className="mx-auto max-w-6xl">
+          <ThemePair stack>
+            <MotionDemo />
           </ThemePair>
         </div>
       </section>
