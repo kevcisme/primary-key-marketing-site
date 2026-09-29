@@ -10,7 +10,7 @@
  * just <section data-theme="dark">).
  */
 
-/* Hover-only content (hire cards, work titles) must still reveal on tap. */
+/* Hover-only content (the parallax project titles) must still reveal on tap. */
 @custom-variant hover (&:hover);
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -58,19 +58,6 @@
       transform: scaleY(0);
     }
   }
-
-  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
-
-  @keyframes spotlight {
-    0% {
-      opacity: 0;
-      transform: translate(-72%, -62%) scale(0.5);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(-50%, -40%) scale(1);
-    }
-  }
 }
 
 /* Inline so utilities read --pk-* directly and follow scoped [data-theme]. */
@@ -96,13 +83,6 @@
 
   /* Inline so each ripple cell reads its own --duration / --delay. */
   --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
-
-  /* Temporary aliases so legacy classes pick up the new palette until each page is migrated. */
-  --color-amber-glow: var(--pk-accent-text);
-  --color-punch-card: var(--pk-surface);
-  --color-terminal: var(--pk-signal);
-  --color-background: var(--pk-ground);
-  --color-foreground: var(--pk-ink);
 }
 
 /*
@@ -128,7 +108,6 @@
   --pk-field-b: #a3d5f2;
   --pk-field-frame: #ffffff;
   --pk-field-ink: #0e131a;
-  --pk-dot: rgb(8 105 160 / 0.16);
 }
 
 /* Must follow the light block: <html> matches :root too, at equal specificity. */
@@ -149,7 +128,6 @@
   --pk-field-b: #0869a0;
   --pk-field-frame: #ffc93d;
   --pk-field-ink: #f2eadc;
-  --pk-dot: rgb(163 213 242 / 0.14);
 }
 
 @keyframes cell-ripple {
@@ -199,16 +177,4 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* Monospace accent utility */
-.font-mono-accent {
-  font-family: var(--font-mono);
-  letter-spacing: -0.01em;
-}
-
-/* Dot-grid background pattern */
-.bg-dots {
-  background-image: radial-gradient(circle, var(--pk-dot) 1px, transparent 1px);
-  background-size: 24px 24px;
 }
