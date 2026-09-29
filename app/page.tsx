@@ -1,246 +1,249 @@
-"use client";
-import { Logo } from "@/components/pk/logo";
-import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
-import { FlipWords } from "@/components/ui/flip-words";
-import { Button } from "@/components/ui/moving-border";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
-import {
-  IconChartRadar,
-  IconEyeExclamation,
-  IconListSearch,
-  IconScale,
-  IconRoute,
-  IconShieldLock,
-} from "@tabler/icons-react";
 import Link from "next/link";
+import { DiagonalField } from "@/components/pk/diagonal-field";
+import { Frame } from "@/components/pk/frame";
+import { Logo } from "@/components/pk/logo";
+import { HeroBoard } from "@/components/pk/hero-board";
+import { PkButton } from "@/components/pk/pk-button";
+import { Eyebrow } from "@/components/pk/eyebrow";
+import { Iceberg } from "@/components/pk/iceberg";
+import { Motif, type MotifName } from "@/components/pk/motif";
+import type { CardTone } from "@/components/pk/offset-card";
+import { SkewCard } from "@/components/pk/skew-card";
+import { Night } from "@/components/pk/night";
+import { LazyCanvasText } from "@/components/pk/lazy";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 
-const flipWords = [
-  "data problem.",
-  "governance problem.",
-  "sequencing problem.",
-  "ownership problem.",
-];
-
-const heroWords = [
-  { text: "Your" },
-  { text: "AI" },
-  { text: "problem" },
-  { text: "is" },
-  { text: "a" },
-];
-
-const deliverables = [
+const deliverables: {
+  title: string;
+  description: string;
+  motif: MotifName;
+  tone: CardTone;
+  motifTone: "surface" | "sky";
+  className: string;
+}[] = [
   {
     title: "A maturity score",
     description:
       "Six axes, one phase, one page. Where the firm stands today, scored on what we observe — not what we're told.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconChartRadar className="h-4 w-4 text-amber-glow" />,
+    motif: "radar",
+    tone: "marigold",
+    motifTone: "surface",
     className: "md:col-span-2",
   },
   {
     title: "A shadow-usage report",
-    description:
-      "What staff say they use, and what they actually use. The gap is the risk.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconEyeExclamation className="h-4 w-4 text-amber-glow" />,
+    description: "What staff say they use, and what they actually use. The gap is the risk.",
+    motif: "gap",
+    tone: "surface",
+    motifTone: "sky",
     className: "md:col-span-1",
   },
   {
     title: "An opportunity map",
-    description:
-      "Every candidate for automation, ranked by what it's worth against what it costs.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconListSearch className="h-4 w-4 text-amber-glow" />,
+    description: "Every candidate for automation, ranked by what it's worth against what it costs.",
+    motif: "map",
+    tone: "sky",
+    motifTone: "surface",
     className: "md:col-span-1",
   },
   {
     title: "A build-or-buy call",
     description:
       "On each opportunity. Sometimes the answer is a tool you already own with a feature switched off.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconScale className="h-4 w-4 text-amber-glow" />,
-    className: "md:col-span-1",
+    motif: "scale",
+    tone: "surface",
+    motifTone: "sky",
+    className: "md:col-span-2",
   },
   {
     title: "A governance baseline",
     description:
       "For tax firms, aligned to IRS Publication 4557 and the FTC Safeguards Rule — the written security plan you are required to have anyway.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconShieldLock className="h-4 w-4 text-amber-glow" />,
+    motif: "shield",
+    tone: "teal",
+    motifTone: "surface",
     className: "md:col-span-1",
   },
   {
     title: "A sequenced roadmap",
-    description:
-      "Now, next, later. Owners named, order defended. The thing the partners actually run.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconRoute className="h-4 w-4 text-amber-glow" />,
+    description: "Now, next, later. Owners named, order defended. The thing the partners actually run.",
+    motif: "steps",
+    tone: "marigold",
+    motifTone: "surface",
     className: "md:col-span-2",
   },
 ];
 
+const donts = [
+  {
+    tone: "navy",
+    title: "We don't sell software.",
+    body: "Vendor-neutral. The recommendation is the product.",
+  },
+  {
+    tone: "teal",
+    title: "We don't touch the client relationship.",
+    body: "We automate what happens inside the firm.",
+  },
+  {
+    tone: "marigold",
+    title: "We don't install a tool before we know the order.",
+    body: "A demo is not a deployed system.",
+  },
+] as const;
+
 export default function Home() {
   return (
-    <div>
-      {/* Section A — Hero */}
-      <section className="relative flex flex-col items-center justify-center min-h-screen px-8 bg-dots">
-        <Logo className="mb-8 w-[400px] max-w-full" />
-
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex flex-wrap justify-center items-center text-base sm:text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold">
-            <TypewriterEffectSmooth words={heroWords} />
-            <FlipWords words={flipWords} />
+    <main>
+      {/* Hero — the deck cover: diagonal field, drawn frame, the name on the frame's edge */}
+      <DiagonalField className="flex min-h-svh items-center px-5 pb-20 pt-36 sm:px-12">
+        <div className="mx-auto w-full max-w-5xl">
+          <h1 className="sr-only">Your AI problem is a data problem.</h1>
+          <Frame tone="field" draw className="mx-auto max-w-[54rem] px-5 pb-16 pt-8 sm:px-10 sm:pt-12 md:px-12">
+            <HeroBoard />
+            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-ground px-5 py-2.5">
+              <Logo className="w-48 sm:w-60" tagline={false} />
+            </div>
+          </Frame>
+          <div className="mt-16 flex flex-col items-center gap-8 text-center">
+            <p className="font-mono text-sm sm:text-base">&gt; data first. rules second. tools last.</p>
+            <div className="flex flex-col gap-4 sm:flex-row">
+              <PkButton href="/offerings" size="lg">
+                The Assessment
+              </PkButton>
+              <PkButton href="/hire" variant="secondary" size="lg">
+                Book a Call
+              </PkButton>
+            </div>
           </div>
         </div>
+      </DiagonalField>
 
-        <p className="font-mono-accent text-neutral-500 dark:text-neutral-400 mt-8 text-sm sm:text-base tracking-tight text-center max-w-2xl">
-          &gt; data first. rules second. tools last.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 mt-12">
-          <Link href="/offerings">
-            <Button
-              borderRadius="1.75rem"
-              className="px-8 py-3 font-mono-accent text-sm"
-            >
-              The Assessment
-            </Button>
-          </Link>
-          <Link href="/hire">
-            <Button
-              borderRadius="1.75rem"
-              className="px-8 py-3 font-mono-accent text-sm"
-            >
-              Book a Call
-            </Button>
-          </Link>
-        </div>
-      </section>
-
-      {/* Section B — The problem */}
-      <section className="px-8 py-24 sm:px-20">
-        <div className="max-w-3xl mx-auto">
-          <p className="font-mono-accent text-amber-glow text-sm mb-8">
-            &gt; the problem
+      {/* The problem */}
+      <section className="px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-3xl">
+          <Eyebrow className="mb-8">the problem</Eyebrow>
+          <p className="mb-8 font-serif text-2xl font-bold leading-snug tracking-tight sm:text-3xl/snug">
+            Every week a vendor calls. The tool will save a day. Some tools will. Most won&apos;t —
+            and{" "}
+            <PointerHighlight containerClassName="max-w-full px-1">
+              <span>the reason is never the tool.</span>
+            </PointerHighlight>
           </p>
-          <p className="text-2xl sm:text-3xl/9 font-bold leading-snug tracking-tight mb-8">
-            Every week a vendor calls. The tool will save a day. Some tools will.
-            Most won&apos;t — and the reason is never the tool.
+          <p className="mb-6 text-base leading-relaxed text-muted sm:text-lg/8">
+            The firm&apos;s data is spread across five systems and a shared drive. Nobody owns the
+            rules. Half the staff already use AI on their own, and no one knows which client data
+            went into it.
           </p>
-          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-            The firm&apos;s data is spread across five systems and a shared
-            drive. Nobody owns the rules. Half the staff already use AI on their
-            own, and no one knows which client data went into it.
-          </p>
-          <p className="text-base sm:text-lg/7 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-            A firm can buy tools all year and end up where it started. That is
-            the failure we are hired to prevent.
+          <p className="text-base leading-relaxed text-muted sm:text-lg/8">
+            A firm can buy tools all year and end up where it started. That is the failure we are
+            hired to prevent.
           </p>
         </div>
       </section>
 
-      {/* Section C — What you walk away with */}
-      <section className="px-8 pb-20 sm:px-20">
-        <p className="font-mono-accent text-amber-glow text-sm mb-4 max-w-7xl mx-auto">
-          &gt; what the firm walks away with
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 max-w-7xl mx-auto tracking-tight">
-          Four weeks. Fixed scope. Fixed fee.
-        </h2>
-        <BentoGrid className="max-w-7xl mx-auto">
-          {deliverables.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              header={item.header}
-              icon={item.icon}
-              className={item.className}
-            />
-          ))}
-        </BentoGrid>
-      </section>
-
-      {/* Section D — Who it's for */}
-      <section className="px-8 py-20 sm:px-20 bg-dots">
-        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-          <div>
-            <p className="font-mono-accent text-amber-glow text-sm mb-6">
-              &gt; who it&apos;s for
+      {/* The iceberg */}
+      <section className="bg-ground-alt px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-14 max-w-3xl">
+            <Eyebrow className="mb-6">the foundation beneath the AI</Eyebrow>
+            <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">
+              The tool is the tip. The work is underneath.
+            </h2>
+            <p className="mt-6 text-base leading-relaxed text-muted sm:text-lg/8">
+              Tooling is the one axis everyone can see. We score six. The other five sit below the
+              waterline, and the two at the bottom cap everything above them.
             </p>
-            <p className="text-xl font-bold leading-snug mb-4 tracking-tight">
+          </div>
+          <Iceberg />
+          <p className="mt-12 font-mono text-sm text-muted">
+            &gt; see{" "}
+            <Link href="/lab" className="text-accent-text underline-offset-4 hover:underline">
+              how we score
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
+
+      {/* What you walk away with */}
+      <section className="px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-7xl">
+          <Eyebrow className="mb-4">what the firm walks away with</Eyebrow>
+          <h2 className="mb-14 font-serif text-3xl font-bold tracking-tight md:text-4xl">
+            Four weeks. Fixed scope. Fixed fee.
+          </h2>
+          <BentoGrid>
+            {deliverables.map((d) => (
+              <BentoGridItem
+                key={d.title}
+                tone={d.tone}
+                title={d.title}
+                description={d.description}
+                header={<Motif name={d.motif} tone={d.motifTone} className="flex-1" />}
+                className={d.className}
+              />
+            ))}
+          </BentoGrid>
+        </div>
+      </section>
+
+      {/* Who it's for */}
+      <section className="px-6 pb-28 sm:px-20">
+        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[minmax(0,20rem)_minmax(0,1fr)]">
+          <div>
+            <Eyebrow className="mb-6">who it&apos;s for</Eyebrow>
+            <p className="mb-4 font-serif text-2xl font-bold leading-snug tracking-tight">
               Firms of 5 to 50 people that sell judgment for a living.
             </p>
-            <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              Accounting and tax practices first. Partners who are being sold AI
-              and have no way to judge it.
+            <p className="text-base leading-relaxed text-muted">
+              Accounting and tax practices first. Partners who are being sold AI and have no way to
+              judge it.
             </p>
           </div>
           <div>
-            <p className="font-mono-accent text-amber-glow text-sm mb-6">
-              &gt; what we don&apos;t do
-            </p>
-            <ul className="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
-              <li>
-                <span className="font-mono-accent text-neutral-500">— </span>
-                We don&apos;t sell software. Vendor-neutral. The recommendation is
-                the product.
-              </li>
-              <li>
-                <span className="font-mono-accent text-neutral-500">— </span>
-                We don&apos;t touch the client relationship. We automate what
-                happens inside the firm.
-              </li>
-              <li>
-                <span className="font-mono-accent text-neutral-500">— </span>
-                We don&apos;t install a tool before we know the order. A demo is
-                not a deployed system.
-              </li>
-            </ul>
+            <Eyebrow className="mb-6">what we don&apos;t do</Eyebrow>
+            <div className="grid gap-5 px-4 md:grid-cols-3 md:px-8">
+              {donts.map((d) => (
+                <SkewCard key={d.title} tone={d.tone}>
+                  <h3 className="text-xl font-bold italic leading-snug tracking-tight">{d.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed opacity-90">{d.body}</p>
+                </SkewCard>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Section E — Footer / Sign-off */}
-      <section className="flex flex-col items-center justify-center py-20 px-8">
-        <div className="h-80 w-full max-w-5xl flex items-center justify-center">
-          <TextHoverEffect text="PRIMARY KEY" />
-        </div>
-        <p className="font-mono-accent text-neutral-400 text-sm mt-4 text-center">
-          &gt; where you stand. what&apos;s worth doing. in what order.
-        </p>
-        <p className="font-mono-accent text-neutral-400 text-sm mt-3 text-center">
-          &gt; already have a roadmap? see{" "}
-          <Link href="/build" className="text-amber-glow hover:underline">
-            what comes after the assessment
-          </Link>
-          .
-        </p>
-        <div className="mt-10">
-          <Link href="/hire">
-            <Button
-              borderRadius="1.75rem"
-              className="px-8 py-3 font-mono-accent text-sm"
-            >
+      {/* Sign-off */}
+      <Night className="px-6 py-24 sm:px-20">
+        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+          <div className="flex h-[clamp(5rem,15vw,10rem)] w-full items-center justify-center">
+            <LazyCanvasText
+              text="PRIMARY KEY"
+              className="text-[clamp(3rem,12vw,8.5rem)] font-bold leading-none tracking-tight"
+              lineGap={7}
+              lineWidth={2}
+            />
+          </div>
+          <p className="mt-8 font-mono text-sm text-muted">
+            &gt; where you stand. what&apos;s worth doing. in what order.
+          </p>
+          <p className="mt-3 font-mono text-sm text-muted">
+            &gt; already have a roadmap? see{" "}
+            <Link href="/build" className="text-accent-text underline-offset-4 hover:underline">
+              what comes after the assessment
+            </Link>
+            .
+          </p>
+          <div className="mt-10">
+            <PkButton href="/hire" size="lg">
               Book a Call
-            </Button>
-          </Link>
+            </PkButton>
+          </div>
         </div>
-      </section>
-    </div>
+      </Night>
+    </main>
   );
 }
