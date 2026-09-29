@@ -4,6 +4,8 @@ import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export type StickyItem = {
+  /** Anchor id for the step. */
+  id?: string;
   title: string;
   description: React.ReactNode;
   /** Mono label above the title, e.g. "week 1". */
@@ -54,7 +56,11 @@ export const StickyScroll = ({
     >
       <ol>
         {content.map((item, index) => (
-          <li key={item.title} className="flex flex-col justify-center py-10 lg:min-h-[60vh] lg:py-16">
+          <li
+            key={item.title}
+            id={item.id}
+            className="flex scroll-mt-24 flex-col justify-center py-10 lg:min-h-[60vh] lg:py-16"
+          >
             <div className={cn("transition-opacity duration-300", active !== index && "lg:opacity-35")}>
               {item.eyebrow && <p className="font-mono text-sm text-accent-text">{item.eyebrow}</p>}
               <h3 className="mt-3 font-serif text-2xl font-bold tracking-tight md:text-3xl">{item.title}</h3>
@@ -62,7 +68,15 @@ export const StickyScroll = ({
                 {item.description}
               </div>
             </div>
-            {item.content && <div className="mt-8 lg:hidden">{item.content}</div>}
+            {item.content && (
+              <div
+                data-theme={panels[index % panels.length].theme}
+                className={cn("mt-8 aspect-square max-h-[26rem] text-ink lg:hidden", contentClassName)}
+                style={{ backgroundColor: panels[index % panels.length].color }}
+              >
+                {item.content}
+              </div>
+            )}
           </li>
         ))}
       </ol>

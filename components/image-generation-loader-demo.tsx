@@ -1,17 +1,22 @@
 "use client";
 
-import Image from "next/image";
 import { ImageGenerationLoader } from "@/components/ui/image-generation-loader";
+import { LazyDitherShader } from "@/components/pk/lazy";
 
+/** The Bell Labs photo as a navy / sky dither, with the marigold "Measuring" scan over it. */
 export default function ImageGenerationLoaderDemo() {
   return (
-    <div className="relative aspect-3/2 w-full max-w-4xl overflow-hidden rounded-lg border border-black/10 bg-punch-card shadow-2xl shadow-black/10">
-      <Image
+    <div className="relative aspect-3/2 w-full max-w-4xl overflow-hidden border-2 border-frame bg-navy shadow-hard">
+      <LazyDitherShader
         src="/images/belllabs.jpg"
+        ditherMode="bayer"
+        colorMode="duotone"
+        primaryColor="#101F38"
+        secondaryColor="#A3D5F2"
+        gridSize={2}
+        contrast={1.15}
         alt="An engineer at the control panel of an early digital computer"
-        fill
-        sizes="(min-width: 1024px) 896px, 100vw"
-        className="object-cover grayscale"
+        className="absolute inset-0"
       />
       <ImageGenerationLoader
         effect="scale-wave"
@@ -20,7 +25,7 @@ export default function ImageGenerationLoaderDemo() {
         cellSize={3}
         gap={1}
         bandHeight={48}
-        colors={["var(--color-amber-glow)", "#9C5A0E"]}
+        colors={["var(--color-marigold)", "var(--color-teal)"]}
       />
     </div>
   );

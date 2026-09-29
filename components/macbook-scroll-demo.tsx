@@ -5,7 +5,7 @@ import { Logo } from "@/components/pk/logo";
 
 export default function MacbookScrollDemo() {
   return (
-    <div className="w-full overflow-hidden bg-[#0B0B0F]">
+    <div className="w-full overflow-hidden">
       <MacbookScroll
         title={
           <span>

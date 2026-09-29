@@ -1,55 +1,51 @@
-"use client";
-import { Spotlight } from "@/components/ui/spotlight";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
-import { Button } from "@/components/ui/moving-border";
 import Link from "next/link";
-import {
-  IconTargetArrow,
-  IconSearch,
-  IconRulerMeasure,
-  IconPresentation,
-} from "@tabler/icons-react";
+import { PageHero } from "@/components/pk/page-hero";
+import { StepPills } from "@/components/pk/step-pills";
+import { Eyebrow } from "@/components/pk/eyebrow";
+import { Motif, type MotifName } from "@/components/pk/motif";
+import { OffsetCard } from "@/components/pk/offset-card";
+import { SkewCard } from "@/components/pk/skew-card";
+import { PkButton } from "@/components/pk/pk-button";
+import { CtaBand } from "@/components/pk/cta-band";
+import { SpineNav } from "@/components/pk/spine-nav";
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal";
+import { TracingBeam } from "@/components/ui/tracing-beam";
 
-const weeks = [
+const SECTIONS = [
+  { id: "weeks", label: "the four weeks" },
+  { id: "deliverables", label: "what you walk away with" },
+  { id: "price", label: "price and fit" },
+  { id: "questions", label: "questions" },
+];
+
+const weeks: { week: number; title: string; description: string; motif: MotifName }[] = [
   {
-    title: "Week 1 — Kickoff",
+    week: 1,
+    title: "Kickoff",
     description:
       "We sit with the partners and set the aim. What AI should do here. What stays human. Where the lines are. Nothing gets scored until we agree on what we are scoring for.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconTargetArrow className="h-4 w-4 text-amber-glow" />,
-    className: "md:col-span-2",
+    motif: "target",
   },
   {
-    title: "Week 2 — Interviews and inspection",
+    week: 2,
+    title: "Interviews and inspection",
     description:
       "Thirty minutes with each person who runs the work. Then we look at the systems ourselves — the practice-management tool, the document store, the licenses you already pay for.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconSearch className="h-4 w-4 text-amber-glow" />,
-    className: "md:col-span-1",
+    motif: "search",
   },
   {
-    title: "Week 3 — Scoring and ranking",
+    week: 3,
+    title: "Scoring and ranking",
     description:
       "Six axes, each scored 0 to 4. Every opportunity we found, ranked by what it's worth against what it costs.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconRulerMeasure className="h-4 w-4 text-amber-glow" />,
-    className: "md:col-span-1",
+    motif: "ruler",
   },
   {
-    title: "Week 4 — Readout",
+    week: 4,
+    title: "Readout",
     description:
       "The roadmap. Now, next, later. A build-or-buy call on each item. Owners named. Delivered before busy season, not during it.",
-    header: (
-      <div className="flex flex-1 w-full h-full min-h-24 rounded-xl bg-dots bg-punch-card/30 dark:bg-neutral-900" />
-    ),
-    icon: <IconPresentation className="h-4 w-4 text-amber-glow" />,
-    className: "md:col-span-2",
+    motif: "present",
   },
 ];
 
@@ -84,6 +80,21 @@ const deliverables = [
   },
 ];
 
+const fit = [
+  "A vendor pitched you a tool in the last 90 days.",
+  "Staff use ChatGPT or Copilot on their own and the partners half-know it.",
+  "Someone spends an hour on a check a machine could do in a minute.",
+  "Two systems that don't talk, reconciled by hand in a spreadsheet.",
+  "A partner is worried about client data and hasn't said it out loud.",
+];
+
+const notFit = [
+  "You want a tool installed next week. We can help after — not before.",
+  "You want a chatbot for your clients. We don't touch the client relationship.",
+  "Everything is on paper. There is nothing to score yet.",
+  "You already have an AI team and a data platform. You need a different firm.",
+];
+
 const questions = [
   {
     q: "We're too small for this.",
@@ -115,205 +126,178 @@ const questions = [
   },
 ];
 
+/** Sticky-panel art for one week: a cream plate with the week's motif. */
+function WeekPanel({ week, motif }: { week: number; motif: MotifName }) {
+  return (
+    <div className="flex size-full flex-col justify-between p-8">
+      <span className="font-mono text-sm">week {week} / 4</span>
+      <Motif name={motif} tone="surface" className="h-48 border-2 border-frame" />
+      <span className="text-7xl font-light leading-none tracking-tight">
+        {String(week).padStart(2, "0")}
+      </span>
+    </div>
+  );
+}
+
 export default function Offerings() {
   return (
-    <div>
-      {/* Hero */}
-      <section className="relative flex flex-col items-center justify-center min-h-[70vh] bg-neutral-950 overflow-hidden px-8">
-        <Spotlight
-          className="-top-40 left-0 md:left-60 md:-top-20"
-          fill="#d4a04a"
-        />
-        <div className="relative z-10 flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl font-bold bg-clip-text text-transparent bg-linear-to-b from-neutral-50 to-neutral-400 text-center">
-            The AI Assessment
-          </h1>
-          <p className="font-mono-accent text-neutral-400 mt-6 text-sm sm:text-base text-center">
-            &gt; four weeks. fixed scope. fixed fee.
-          </p>
-          <p className="text-neutral-300 mt-6 text-base sm:text-lg text-center max-w-2xl">
-            One outcome: the partners know where the firm stands, what is worth
-            doing, and in what order.
-          </p>
+    <main>
+      <SpineNav sections={SECTIONS} />
+
+      <PageHero
+        eyebrow="the assessment"
+        title="The AI Assessment"
+        prompt="four weeks. fixed scope. fixed fee."
+        lead="One outcome: the partners know where the firm stands, what is worth doing, and in what order."
+        aside={
+          <StepPills
+            items={weeks.map((w) => ({ label: w.title, meta: `week ${w.week}`, href: `#week-${w.week}` }))}
+            active={0}
+            tone="ground"
+          />
+        }
+      />
+
+      {/* The four weeks */}
+      <section id="weeks" className="scroll-mt-24 px-6 pt-24 sm:px-20">
+        <div className="mx-auto max-w-6xl">
+          <Eyebrow className="mb-4">how the four weeks run</Eyebrow>
+          <h2 className="font-serif text-3xl font-bold tracking-tight md:text-4xl">
+            We score what we see, not what we&apos;re told.
+          </h2>
+          <StickyScroll
+            className="mt-6"
+            contentClassName="border-2 border-frame shadow-hard"
+            content={weeks.map((w) => ({
+              id: `week-${w.week}`,
+              eyebrow: `week ${w.week}`,
+              title: w.title,
+              description: w.description,
+              content: <WeekPanel week={w.week} motif={w.motif} />,
+            }))}
+          />
         </div>
       </section>
 
-      {/* Gradient transition: dark to beige */}
-      <div className="h-24 bg-linear-to-b from-neutral-950 to-transparent" />
-
-      {/* The four weeks */}
-      <section className="px-8 pt-8 pb-20 sm:px-20">
-        <p className="font-mono-accent text-amber-glow text-sm mb-4 max-w-7xl mx-auto">
-          &gt; how the four weeks run
-        </p>
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 max-w-7xl mx-auto tracking-tight">
-          We score what we see, not what we&apos;re told.
-        </h2>
-        <BentoGrid className="max-w-7xl mx-auto">
-          {weeks.map((item, i) => (
-            <BentoGridItem
-              key={i}
-              title={item.title}
-              description={item.description}
-              header={item.header}
-              icon={item.icon}
-              className={item.className}
-            />
-          ))}
-        </BentoGrid>
-      </section>
-
       {/* Deliverables */}
-      <section className="px-8 py-20 sm:px-20 bg-dots">
-        <div className="max-w-4xl mx-auto">
-          <p className="font-mono-accent text-amber-glow text-sm mb-4">
-            &gt; what you walk away with
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-tight">
+      <section id="deliverables" className="scroll-mt-24 bg-ground-alt px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-4xl">
+          <Eyebrow className="mb-4">what you walk away with</Eyebrow>
+          <h2 className="mb-12 font-serif text-3xl font-bold tracking-tight md:text-4xl">
             Seven things, on paper, that outlive the engagement.
           </h2>
-          <div className="divide-y divide-amber-glow/15 border-y border-amber-glow/15">
+          <ol className="divide-y divide-line border-y border-line">
             {deliverables.map((d, i) => (
-              <div
-                key={i}
-                className="grid sm:grid-cols-[auto_1fr] gap-2 sm:gap-8 py-6"
-              >
-                <div className="flex items-baseline gap-4 sm:w-64">
-                  <span className="font-mono-accent text-xs text-amber-glow">
+              <li key={d.name} className="grid gap-3 py-6 sm:grid-cols-[auto_1fr] sm:gap-8">
+                <div className="flex items-center gap-4 sm:w-72">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-teal font-mono text-xs font-semibold text-carbon">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="font-mono-accent font-bold text-sm text-neutral-800 dark:text-neutral-100">
-                    {d.name}
-                  </span>
+                  <span className="text-lg font-semibold leading-snug">{d.name}</span>
                 </div>
-                <p className="text-sm sm:text-base/6 text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  {d.body}
-                </p>
-              </div>
+                <p className="text-base leading-relaxed text-muted">{d.body}</p>
+              </li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
       {/* Price + fit */}
-      <section className="px-8 py-24 sm:px-20">
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-16">
+      <section id="price" className="scroll-mt-24 px-6 py-24 sm:px-20">
+        <div className="mx-auto grid max-w-6xl gap-14 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)]">
           <div>
-            <p className="font-mono-accent text-amber-glow text-sm mb-6">
-              &gt; the price
-            </p>
-            <p className="font-mono-accent text-5xl font-bold mb-4">$2,500</p>
-            <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed mb-6">
-              Fixed. Four weeks, start to readout. No hourly surprises and no
-              discovery phase that discovers it needs another discovery phase.
-            </p>
-            <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
-              If the firm wants help executing the roadmap — architecture, data
-              work, tool selection, rollout, pilots — that is a second
-              engagement, scoped from the roadmap and priced after it. Not
-              before.{" "}
+            <Eyebrow className="mb-6">the price</Eyebrow>
+            <OffsetCard tone="marigold" bodyClassName="p-8">
+              <p className="font-mono text-6xl font-semibold tracking-tight">$2,500</p>
+              <p className="mt-6 text-base leading-relaxed">
+                Fixed. Four weeks, start to readout. No hourly surprises and no discovery phase
+                that discovers it needs another discovery phase.
+              </p>
+              <p className="mt-4 text-base leading-relaxed">
+                If the firm wants help executing the roadmap — architecture, data work, tool
+                selection, rollout, pilots — that is a second engagement, scoped from the roadmap
+                and priced after it. Not before.
+              </p>
               <Link
                 href="/build"
-                className="text-amber-glow hover:underline font-mono-accent text-sm"
+                className="mt-6 inline-block font-mono text-sm font-medium underline decoration-2 underline-offset-4"
               >
                 What comes after &rarr;
               </Link>
-            </p>
+            </OffsetCard>
           </div>
-          <div>
-            <p className="font-mono-accent text-amber-glow text-sm mb-6">
-              &gt; when it&apos;s a fit
-            </p>
-            <ul className="space-y-3 text-base text-neutral-700 dark:text-neutral-300 mb-10">
-              <li>A vendor pitched you a tool in the last 90 days.</li>
-              <li>
-                Staff use ChatGPT or Copilot on their own and the partners
-                half-know it.
-              </li>
-              <li>
-                Someone spends an hour on a check a machine could do in a minute.
-              </li>
-              <li>
-                Two systems that don&apos;t talk, reconciled by hand in a
-                spreadsheet.
-              </li>
-              <li>
-                A partner is worried about client data and hasn&apos;t said it out
-                loud.
-              </li>
-            </ul>
-            <p className="font-mono-accent text-amber-glow text-sm mb-6">
-              &gt; when it isn&apos;t
-            </p>
-            <ul className="space-y-3 text-base text-neutral-700 dark:text-neutral-300">
-              <li>
-                You want a tool installed next week. We can help after — not
-                before.
-              </li>
-              <li>You want a chatbot for your clients. We don&apos;t touch the
-                client relationship.</li>
-              <li>Everything is on paper. There is nothing to score yet.</li>
-              <li>
-                You already have an AI team and a data platform. You need a
-                different firm.
-              </li>
-            </ul>
+          <div className="grid gap-8 px-4 md:px-8">
+            <div>
+              <Eyebrow className="mb-6">when it&apos;s a fit</Eyebrow>
+              <SkewCard tone="teal">
+                <ul className="space-y-3 text-base leading-relaxed">
+                  {fit.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden className="mt-2.5 size-2 shrink-0 bg-carbon" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </SkewCard>
+            </div>
+            <div>
+              <Eyebrow className="mb-6">when it isn&apos;t</Eyebrow>
+              <SkewCard tone="navy">
+                <ul className="space-y-3 text-base leading-relaxed">
+                  {notFit.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span aria-hidden className="mt-2.5 size-2 shrink-0 bg-marigold" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </SkewCard>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Questions */}
-      <section className="px-8 py-20 sm:px-20 bg-dots">
-        <div className="max-w-3xl mx-auto">
-          <p className="font-mono-accent text-amber-glow text-sm mb-12">
-            &gt; questions partners ask
-          </p>
-          <div className="space-y-10">
-            {questions.map((item, i) => (
-              <div key={i}>
-                <p className="font-mono-accent font-bold text-base mb-3 text-neutral-800 dark:text-neutral-100">
-                  &ldquo;{item.q}&rdquo;
-                </p>
-                <p className="text-base text-neutral-700 dark:text-neutral-300 leading-relaxed">
-                  {item.a}
-                </p>
-              </div>
-            ))}
-          </div>
+      <section id="questions" className="scroll-mt-24 bg-ground-alt px-6 py-24 sm:px-20">
+        <div className="mx-auto max-w-3xl">
+          <Eyebrow className="mb-12">questions partners ask</Eyebrow>
+          <TracingBeam className="pl-10 md:pl-0">
+            <div className="space-y-12">
+              {questions.map((item) => (
+                <div key={item.q}>
+                  <p className="font-serif text-xl font-bold italic leading-snug sm:text-2xl">
+                    &ldquo;{item.q}&rdquo;
+                  </p>
+                  <p className="mt-3 text-base leading-relaxed text-muted sm:text-lg/8">{item.a}</p>
+                </div>
+              ))}
+            </div>
+          </TracingBeam>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="flex flex-col items-center justify-center py-24 px-8 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold tracking-tight max-w-2xl mb-6">
-          Find out where you stand before you spend a dollar on tools.
-        </h2>
-        <div className="flex flex-col sm:flex-row gap-4 mt-6">
-          <Link href="/hire">
-            <Button
-              borderRadius="1.75rem"
-              className="px-8 py-3 font-mono-accent text-sm"
-            >
+      <CtaBand
+        title="Find out where you stand before you spend a dollar on tools."
+        actions={
+          <>
+            <PkButton href="/hire" size="lg">
               Book a Call
-            </Button>
-          </Link>
-          <Link href="/lab">
-            <Button
-              borderRadius="1.75rem"
-              className="px-8 py-3 font-mono-accent text-sm"
-            >
+            </PkButton>
+            <PkButton href="/lab" variant="secondary" size="lg">
               How We Score
-            </Button>
-          </Link>
-        </div>
-        <p className="font-mono-accent text-neutral-400 text-sm mt-10">
-          &gt; or see{" "}
-          <Link href="/work" className="text-amber-glow hover:underline">
-            the work behind the advice
-          </Link>
-          .
-        </p>
-      </section>
-    </div>
+            </PkButton>
+          </>
+        }
+        footnote={
+          <>
+            &gt; or see{" "}
+            <Link href="/work" className="text-accent-text underline-offset-4 hover:underline">
+              the work behind the advice
+            </Link>
+            .
+          </>
+        }
+      />
+    </main>
   );
 }

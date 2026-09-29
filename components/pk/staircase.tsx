@@ -5,6 +5,7 @@ export type Step = {
   /** Short index shown in mono, e.g. "0" or "$10k". */
   label: string;
   title: string;
+  titleClassName?: string;
   body?: React.ReactNode;
   tone?: CardTone;
 };
@@ -40,7 +41,9 @@ export function Staircase({ steps, rise = 2.5, xLabel, yLabel, className }: Stai
               bodyClassName="flex min-h-40 flex-col gap-2 p-5"
             >
               <span className="font-mono text-xs opacity-75">{step.label}</span>
-              <span className="text-lg font-semibold leading-tight">{step.title}</span>
+              <span className={cn("text-lg font-semibold leading-tight", step.titleClassName)}>
+                {step.title}
+              </span>
               {step.body && <div className="text-sm leading-relaxed opacity-85">{step.body}</div>}
             </OffsetCard>
           </li>
