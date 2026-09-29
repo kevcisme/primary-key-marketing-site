@@ -103,7 +103,7 @@ export default function Home() {
           <Frame tone="field" draw className="mx-auto max-w-[54rem] px-5 pb-16 pt-8 sm:px-10 sm:pt-12 md:px-12">
             <HeroBoard />
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-ground px-5 py-2.5">
-              <Logo className="w-48 sm:w-60" tagline={false} />
+              <Logo className="w-56 sm:w-72" />
             </div>
           </Frame>
           <div className="mt-16 flex flex-col items-center gap-8 text-center">

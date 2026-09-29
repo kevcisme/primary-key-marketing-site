@@ -147,7 +147,7 @@ export default function StylePage() {
               motion layer on top.
             </p>
             <div className="absolute -bottom-5 left-8 bg-ground px-4 py-2 sm:left-12">
-              <Logo className="w-44" tagline={false} />
+              <Logo className="w-56" />
             </div>
           </Frame>
           <p className="mt-12 font-mono text-sm">&gt; noindex. not linked from the nav.</p>
