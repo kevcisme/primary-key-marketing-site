@@ -1,79 +1,17 @@
 import { PageHero } from "@/components/pk/page-hero";
 import { Eyebrow } from "@/components/pk/eyebrow";
-import { Motif, type MotifName } from "@/components/pk/motif";
-import type { CardTone } from "@/components/pk/offset-card";
 import { Staircase, type Step } from "@/components/pk/staircase";
 import { PkButton } from "@/components/pk/pk-button";
 import { CtaBand } from "@/components/pk/cta-band";
 import { SpineNav } from "@/components/pk/spine-nav";
 import { RadarDemo } from "@/components/pk/radar-demo";
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
+import { AxesSolid } from "@/components/pk/axes-solid";
 import { PointerHighlight } from "@/components/ui/pointer-highlight";
 
 const SECTIONS = [
   { id: "axes", label: "the six axes" },
   { id: "rule", label: "the one rule" },
   { id: "phases", label: "the five phases" },
-];
-
-const axes: {
-  title: string;
-  description: string;
-  motif: MotifName;
-  tone: CardTone;
-  foundation?: boolean;
-  className: string;
-}[] = [
-  {
-    title: "01 / Data readiness",
-    description:
-      "Is the firm's data digital, structured, centralized, queryable? This is the substrate. Everything AI does, it does to data — and most firms have theirs in five systems and a shared drive. A foundation axis: nothing above it can score higher.",
-    motif: "table",
-    tone: "cobalt",
-    foundation: true,
-    className: "md:col-span-2",
-  },
-  {
-    title: "02 / Governance & risk",
-    description:
-      "Policy, confidentiality, PII handling, professional liability, oversight. The second foundation axis — and in a professional-services firm, usually the one that caps the score.",
-    motif: "shield",
-    tone: "cobalt",
-    foundation: true,
-    className: "md:col-span-1",
-  },
-  {
-    title: "03 / Tooling adoption",
-    description:
-      "None, generic, embedded, or custom. Scored twice — what leadership says is in use, and what is actually in use.",
-    motif: "plug",
-    tone: "marigold",
-    className: "md:col-span-1",
-  },
-  {
-    title: "04 / Workflow integration",
-    description:
-      "Whether AI is one person's private habit or a documented step in how the work gets done.",
-    motif: "flow",
-    tone: "sky",
-    className: "md:col-span-2",
-  },
-  {
-    title: "05 / People & skills",
-    description:
-      "Literacy, champions, training, comfort. Who can actually run the thing after we leave.",
-    motif: "people",
-    tone: "surface",
-    className: "md:col-span-1",
-  },
-  {
-    title: "06 / Leadership & strategy",
-    description:
-      "Whether a partner owns this, has a budget for it, and can say what AI is for at this firm. Without an owner, nothing on the roadmap survives busy season.",
-    motif: "pillars",
-    tone: "teal",
-    className: "md:col-span-2",
-  },
 ];
 
 const phases: Step[] = [
@@ -177,27 +115,7 @@ export default function Lab() {
               need opposite things. The shape is what tells you which.
             </p>
           </div>
-          <BentoGrid className="md:auto-rows-auto">
-            {axes.map((axis) => (
-              <BentoGridItem
-                key={axis.title}
-                tone={axis.tone}
-                title={axis.title}
-                description={axis.description}
-                header={
-                  <div className="relative flex flex-1 flex-col">
-                    <Motif name={axis.motif} tone="surface" className="min-h-28 flex-1" />
-                    {axis.foundation && (
-                      <span className="absolute right-2 top-2 bg-marigold px-2 py-0.5 font-mono text-[11px] font-semibold text-carbon">
-                        foundation
-                      </span>
-                    )}
-                  </div>
-                }
-                className={axis.className}
-              />
-            ))}
-          </BentoGrid>
+          <AxesSolid />
         </div>
       </section>
 
